@@ -28,8 +28,8 @@ This project aligned with my broader interests in social-emotional aspects of le
 
 ### Links
 
-* The original paper by Haimovitz and Dweck (2016) can be accessed through [this link](https://github.com/psych251/haimovitz2016_2/blob/main/original_paper/haimovitz2016_paper.pdf)
-* The Github repository for this replication project can be accessed through [this link](https://github.com/psych251/haimovitz2016_2).
+* The original paper by Haimovitz and Dweck (2016) can be accessed through https://github.com/psych251/haimovitz2016_2/blob/main/original_paper/haimovitz2016_paper.pdf
+* The Github repository for this replication project can be accessed through https://github.com/psych251/haimovitz2016_2
 
 ## Methods
 
