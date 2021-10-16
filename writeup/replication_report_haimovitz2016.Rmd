@@ -18,7 +18,7 @@ output:
 Through a series of four experiments, Haimovitz and Dweck (2016) found that parents' views of failure predicted their children's views of intelligence; that is, parents who viewed failure as debilitating (rather than enhancing) were more likely to have children who believed that their intelligence is fixed (rather than malleable). Furthermore, parents' views of failure impacted the way that parents viewed their own children's failure; parents who believed that failure is debilitating focused on their children's performance and ability, instead of their learning. This study suggested that parents' views of failure are displayed to children in tangible ways through specific parenting practices (e.g., being concerned about their children's performance when they fail), which then impact children's own views of intelligence.
 
 ### Project Goals and Procedures
-This project aimed to replicate the results reported in Experiment 4, which found a causal relationship between parents' views of failure and their response to a hypothetical scenario in which their child came home with a failing grade. Just like the original study, this replication project was also conducted online. Parents' views of failure, as well as other information, was collected using an online Qualtrics survey. A biased, 5-item survey was included to manipulate participants' views of failure, followed by an open-ended question that asked participants how they would react to the hypothetical scenario. Participants were parents with children of all ages, and they were recruited through an online recruitment platform called Prolific. The project aimed to recruit about 140 parents, given that the original study tested 132 parents.
+This project aimed to replicate the results reported in Experiment 4, which found a causal relationship between parents' views of failure and their response to a hypothetical scenario in which their child came home with a failing grade. Just like the original study, this replication study was also conducted online. Parents' views of failure, as well as other information, was collected using an online Qualtrics survey. A biased, 5-item survey was included to manipulate participants' views of failure, followed by an open-ended question that asked participants how they would react to the hypothetical scenario. Participants were parents with children of all ages, and they were recruited through an online recruitment platform called Prolific. The project aimed to recruit about 140 parents, given that the original study tested 132 parents.
 
 ### Anticipated Challenges
 Some parts of the methods outlined in the original paper were open to interpretation, and I relied on being able to reach out to the authors for some clarification. I also anticipated having to spend extra time figuring out how to randomly assign participants to one of two conditions in Qualtrics. Furthermore, the open-ended responses needed to be coded by two raters to assess reliability, so I considered seeking an undergraduate RA or another PYSCH 251 student to help me code these responses. Finally, I anticipated having to spend extra time conducting the statistical analyses, given my limited training in statistics.
@@ -29,7 +29,7 @@ This project aligned with my broader interests in social-emotional aspects of le
 ### Links
 
 * The original paper by Haimovitz and Dweck (2016) can be accessed through https://github.com/psych251/haimovitz2016_2/blob/main/original_paper/haimovitz2016_paper.pdf
-* The Github repository for this replication project can be accessed through https://github.com/psych251/haimovitz2016_2
+* The Github repository for this project can be accessed through https://github.com/psych251/haimovitz2016_2
 
 ## Methods
 
@@ -39,25 +39,95 @@ Original effect size, power analysis for samples to achieve 80%, 90%, 95% power 
 
 ### Planned Sample
 
-Planned sample size and/or termination rule, sampling frame, known demographics if any, preselection rules if any.
+X parents were recruited to achieve Y% power and to account for some participants whose data may not be usable. Parents were recruited through a crowdsourcing platform called Prolific. The participant pool on Prolific was filtered by parental status to specifically reach parents.
 
-### Materials
+In the original study, 310 adults from a crowdsourcing platform called Amazon Mechanical Turk completed an initial survey asking whether they were a parent. Out of these adults, 132 of them reported to be a parent and were chosen to participate in the study. The sample also had the following demographics: 
 
-All materials - can quote directly from original article - just put the text in quotations and note that this was followed precisely.  Or, quote directly and just point out exceptions to what was described in the original article.
+* "57% female" 
+* "31% had a high school diploma or some college education, 51% had a college degree, and 18% had a postgraduate degree." 
+* "75% White, 12% African American, 7% Asian American, and 6% Hispanic"
 
-### Procedure	
+### Materials and Procedure
 
-Can quote directly from original article - just put the text in quotations and note that this was followed precisely.  Or, quote directly and just point out exceptions to what was described in the original article.
+#### General Materials and Procedures
+
+The replication study followed the materials and procedures outlined in the original article: 
+
+>"Participants completed an online survey initially assessing several beliefs, including their perceptions of their child’s competence (assessed with same measure as in Study 1; α = .79). Then we temporarily manipulated failure mind-sets by randomly assigning the parents to complete one of two five-item biased questionnaires, written to foster agreement with either a failure-is-debilitating mind-set (e.g., “Experiencing failure can lead to negative feelings, like shame or sadness, that interfere with learning”) or a failure-is-enhancing mind-set (e.g., “Experiencing failure can improve performance in the long run if you learn from it”). All measures used a 6-point rating scale from 1 (strongly disagree) to 6 (strongly agree). ...
+
+>We then asked participants to read and vividly imagine a scenario in which their child came home from school with a failing grade on a math quiz, as in Study 2. They then wrote what they would do, think, and feel in response. Finally, participants reported on their failure mind-sets (α = .82), using the same items as in Study 1, as part of a survey that included a few other items."
+
+Additionally, all survey items included in the supplementary ["Materials and Methods" document](https://github.com/psych251/haimovitz2016_2/blob/main/original_paper/haimovitz2016_materials_measures.pdf) were used. 
+
+From reading the original article and supplementary document, it was not clear whether the middle points on the Likert scale were labelled. Based on similar studies examining intelligence mindsets, I decided to label the middle points with "mostly dis/agree" and "slightly dis/agree." It was also unclear what "other items" were included in the final survey asking participants to report on their failure mindsets. These "other items" were not needed to replicate the main results, so they were omitted from this replication study. As I was also not sure where to collect demographic data (i.e., sex, race, education level, child's age), I decided to collect this information as part of the final survey at the very end of the study.
+
+Here is a link to the survey that was used to conduct the replication study: 
+https://stanforduniversity.qualtrics.com/jfe/form/SV_9yLXExjnUOE8XzM
+
+#### Data Processing/Coding
+
+The following procedures from the original article outlined how the open-ended responses were coded. These procedures, in addition to guidelines outlined in the supplementary ["Materials and Methods" document](https://github.com/psych251/haimovitz2016_2/blob/main/original_paper/haimovitz2016_materials_measures.pdf) were carefully followed except for a few exceptions explained below. 
+
+> "Two raters, blind to condition, coded the open-ended responses. The first author developed a coding scheme on the basis of an initial reading of the responses and then made clarifying revisions on the basis of feedback from the two raters.
+
+> The codes were broken down into two main categories of interest: performance-oriented responses and learning-oriented responses. Coders gave a score of 1 each time a code was present. Codes in the performance-oriented category were responses that focused on judgments of ability, particularly as a stable trait (e.g., “I would think maybe my child is just not that good at math”); comfort for lack of ability (e.g., “It’s ok that you got an F. You tried your best”); contingent self-worth based on their child’s performance (e.g., “I’d feel bad about myself”); pity for their child’s lack of ability (“I would feel a little nervous for my child because I know how hard it can be”); grades as a goal (e.g., “I would . . . hope their grades from previous [tests] are high enough to make up for the test”); and social comparison (“I would also want to know how the other children in the class scored”). Codes in the learning-oriented category were responses that focused on judgments of effort (e.g., “I would tell my son he needs to study harder”); strategies, which included both general strategies (e.g., “he didn’t study the material in the right way”) and specific study or test-taking strategies (e.g., “I would also say that double checking your work before you hand it in is a good habit to get into”); help seeking (e.g., “I would get her a math tutor”); mastery, or conceptual understanding, as a goal (e.g., “the important thing we need to do is try to understand the concepts behind the problems he got wrong, and then study those”); interest (e.g., “I would hope that the results of the test would not stop her from enjoying the class and wonder about ways I could help keep her liking of the subject going”); and explicit characterizations of failure as enhancing, or good (e.g., “It is ok to make mistakes and fail sometimes, because that’s how people learn”).
+
+> Two statements that repeated the same sentiment were not coded as two instances (e.g., “I would question how much studying did they do” and “I would also ask . . . do they think they studied enough” would be one code for effort). However, two statements that expressed different ideas but fell under the same code were marked as two instances (e.g., “I would question my child to make sure that she studied the correct material thoroughly” and “I would ask to make sure that she was paying attention in class” would be marked as two codes for strategies, as these statements represent different strategies). If a statement fell under two codes and one was more specific than the other, only the more specific classification was counted. That is, although effort and help seeking can be different types of strategies, statements expressing these ideas were coded only as effort and help seeking, not also as strategies.
+
+> Scores for performance-oriented and learning-oriented responses were each created by summing all instances of their respective subcategories. Two coders rated 20 responses (15%) to assess reliability."
+
+I recruited an undergraduate RA to serve as the second rater, and we ensured we were blind to condition by randomly scrambling the responses. As there was already a coding scheme developed by the original authors, we did not create our own coding scheme. Rather, we carefully reviewed the coding scheme outlined in the supplementary document to code the responses.
 
 ### Analysis Plan
 
-Can also quote directly, though it is less often spelled out effectively for an analysis strategy section.  The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.  
+The following analyses were conducted to align with the results outlined in the original article. 
 
-**Clarify key analysis of interest here**  You can also pre-specify additional analyses you plan to do.
+#### Data Exclusion
+The original paper did not mention whether participants were excluded, but in this replication study, I planned to exclude data from participants if the open-ended responses were unintelligible.
+
+#### Creating Composite Scores
+Following the procedures outlined in Study 1, composite scores were calculated for each survey. 
+
+* **Failure Mindset Survey**: "We created a composite variable by reverse-scoring items that represented a failure-is-enhancing mind-set and then averaging responses to all the items; thus, higher numbers indicated a more debilitating view of failure."
+* **Perception of Child's Competence Survey**: "Responses were averaged to form a composite score."
+* **Biased Questionnaires**: The responses were averaged to form a composite score, such that higher scores on the failure-is-debilitating biased questionnaire reflected a more debilitating view of failure and higher scores on the failure-is-enhancing biased questionnaire reflected a more enhancing view of failure.
+
+#### Reliablity Analyses
+The following analyses were conducted to assess reliablity of various measures: 
+
+* **Open-Ended Responses**: To assess inter-rater reliability, intraclass correlation coefficients (ICCs) were calculated for the subset of open-ended responses that were coded by the two raters. ICCs were calculated for performance-oriented responses and learning-oriented responses.
+* **Survey Measures**: Internal consistency of the survey measures was also assessed by calculating Cronbach's alpha for each survey.
+
+#### Covariates
+To identify possible covariates, the effects of child's age, sex, and socioeconomic status was tested on "key variables." It was unclear what "key variables" were tested, so I decided to test the following: parents' self-reported failure mindsets, scores for performance-oriented responses, and scores for learning-oriented responses. 
+
+#### Manipulation Check
+One-sample t tests were used to compare "the mean in each priming condition with the scale's midpoint (3.5)." Furthermore, another t test was conducted to confirm that the "biased-questionnaire manipulation effectively changed parents’ self-reported failure mind-sets at the end of the survey."
+
+#### Did parents in the two conditions (failure-is-debilitating condtion and failure-is-enhancing condition) react differently to the child failure scenario? 
+Independent t tests were conducted to examine whether parents with failure-is-debilitating mindsets and parents with failure-is-enhancing mindsets responded differently to a child failure scenario. One of the t tests was conducted to compare the two groups' performance-oriented responses and the other t test was conducted to compare the two groups' learning-oriented responses. 
+
+To rule out other explanations, the authors controlled for parents' perception of children's competence in school in an analyses that appears to be a t test: "When we controlled for parents’ perception of their children’s competence in school, failure-mind-set condition still predicted performance-oriented, t(131) = 3.249, p = .002, and learning-oriented, t(1, 131) = −2.02, p =.046, responses to children’s failure."
+
+#### Key Analysis of Interest
+
+**The key analysis of interest will be an independent t test to replicate the following result:**
+
+>"Parents who were induced to hold a failure-is-debilitating mind-set were more likely to react with concerns about their child’s performance and lack of ability, t(131) = 3.246, p < .001, ηp2 = .075 ... compared with those who were induced to hold a failure-is-enhancing mind-set."
+
+This finding was chosen as the main analysis of interest, as the purpose of Study 4 was to examine whether there was a causal effect of parents' failure mindset on their reaction to a scenario in which their child hypothetically came home with a failing grade. Two t tests were conducted to compare both performance-oriented responses and learning-oriented responses between the two conditions. The difference observed in performance-oriented responses had a larger effect size and was therefore chosen as the main analysis of interest. However, I also attempted to replicate the difference observed in learning-oriented responses (i.e., "Parents who were induced to hold a failure-is-debilitating mind-set were ... less likely to react with support for their child’s learning and mastery, t(131) = −2.04, p = .043, ηp2 = .031, compared with those who were induced to hold a failure-is-enhancing mind-set (see Fig. 2)."
 
 ### Differences from Original Study
 
-Explicitly describe known differences in sample, setting, procedure, and analysis plan from original study.  The goal, of course, is to minimize those differences, but differences will inevitably occur.  Also, note whether such differences are anticipated to make a difference based on claims in the original article or subsequent published research on the conditions for obtaining the effect.
+Here were some of the differences between the current replication study and the original study: 
+
+* **Crowdsourcing Platform**: The original study was conducted on Amazon Mechanical Turk, but the current project used Prolific. Both Amazon Mechanical Turk and Prolific are crowdsourcing platforms, so the study procedures were fairly similar. Prolific seems to provide higher data quality, so the results in this replication project may show higher internal consistency for survey measures and better overall data quality.
+
+* **Procedures**: Some parts of the procedures in the original article were unclear, specifically the labels of the middle points on the Likert scale, as well as the items in the final survey. It is common to have "mostly dis/agree" and "slightly dis/agree" as labels in such surveys, so this potential difference should not compromise the results. Adding demographic questions at the very end of the final survey should not change the claims in the original article as well. Even in the unlikely scenario that demographic questions made parents think in a certain way, it was possible to avoid having these questions affect the results by including the questions at the very end of the study and disabling going back to previous questions.
+
+* **Coding Scheme**: In the original study, the coding scheme was developed by reading through the open-ended responses and developing a coding scheme based on those responses. In this project, a new coding scheme was not made; rather, the original coding scheme was adopted. Creating a new coding scheme based on the responses collected in this replication study may have fundamentally changed the open-ended response measure. As the original study included a fairly large sample size and was likely to have represented a variety of responses, I anticipated that the coding scheme created by the authors would work well for this replication study as well.
+
+Overall, the differences between the original study and replication study did not seem to be significant enough to cause differences in the results.
 
 ### Methods Addendum (Post Data Collection)
 
@@ -77,16 +147,114 @@ You can comment this section out prior to final report with data collection.
 
 Data preparation following the analysis plan.
 	
-```{r include=F}
-###Data Preparation
+```{r eval=FALSE}
+### Data Preparation
 
-####Load Relevant Libraries and Functions
+#### Clean Workspace
+rm(list=ls())
 
-####Import data
+#### Load Relevant Libraries and Functions
+library(rmarkdown)
+library(tidyverse)
+library(knitr)
+library(qualtRics)
+library(psych) # for reverse coding
 
-#### Data exclusion / filtering
+#### Load Data
 
-#### Prepare data for analysis - create columns etc.
+##### authenticate API
+qualtrics_api_credentials(api_key = "XXX", base_url="stanforduniversity.ca1.qualtrics.com", install = TRUE)
+##### get qualtrics survey data, load, and save
+qualtrics_data <- fetch_survey(surveyID = "SV_9yLXExjnUOE8XzM", force_request = TRUE)
+write_csv(qualtrics_data, "./raw_data/qualtrics_data.csv")
+
+##### load coded_responses from raters 1 and 2
+coded_response_1 <- read.csv("", header = TRUE, sep = ",")
+coded_response_2 <- read.csv("", header = TRUE, sep = ",")
+
+#### Data Exclusion / Filtering
+qualtrics_data <- qualtrics_data |>
+  mutate(DoNotUse = ifelse(id = , 1, NA)) |> #identify which ids need to be excluded
+  filter(is.na(DoNotUse == TRUE)) |> #filter out all the ids that need to be excluded
+  select(-c("DoNotUse"))
+coded_response_1 <- coded_response_1 |>
+  mutate(DoNotUse = ifelse(id = , 1, NA)) |> #identify which ids need to be excluded
+  filter(is.na(DoNotUse == TRUE)) |> #filter out all the ids that need to be excluded
+  select(-c("DoNotUse"))
+coded_response_2 <- coded_response_2 |>
+  mutate(DoNotUse = ifelse(id = , 1, NA)) |> #identify which ids need to be excluded
+  filter(is.na(DoNotUse == TRUE)) |> #filter out all the ids that need to be excluded
+  select(-c("DoNotUse"))
+
+#### Prepare Coded Responses Data
+
+##### get coded responses that were double coded (by both raters) and get average
+coded_response_1_double <- coded_response_1 |>
+  filter(is.na(double) == FALSE)
+coded_response_2_double <- coded_response_2 |>
+  filter(is.na(double) == FALSE)
+coded_response_double <- merge(coded_response_1_double, coded_response_2_double, by = "prolific_id")
+coded_response_double <- coded_response_double |>
+  mutate(coded_por = avg(coded_por_1, coded_por_2),
+         coded_lor = avg(coded_lor_1, coded_lor_2))
+coded_response_double_short <- coded_response_double |>
+  select(c("prolific_id", "coded_por", "coded_lor"))
+
+##### combine all coded responses (both single coded and double coded ones)
+###### responses that were single scored by Rater 1 
+coded_response_1_single <- coded_response_1 |>
+  filter(is.na(double) == TRUE) |>
+  mutate(coded_por = coded_por_1,
+         coded_lor = coded_lor_1) |>
+  select(c("prolific_id", "coded_por", "coded_lor"))
+###### responses that were single scored by Rater 2
+coded_response_2_single <- coded_response_2 |>
+  filter(is.na(double) == TRUE) |>
+  mutate(coded_por = coded_por_2,
+         coded_lor = coded_lor_2) |>
+  select(c("prolific_id", "coded_por", "coded_lor"))
+###### merge all coded response data (both responses that were double scored and single scored)
+coded_response <- rbind(coded_response_1_single, coded_response_2_single, coded_response_double_short)
+
+#### Prepare Qualtrics Data
+
+##### label each participant with the correct condition
+###### NOTE TO SELF: Try to find a way on Qualtrics to record Condition so I don't have to code some of this (still keep the part where I take out raw responses)
+qualtrics_data <- qualtrics_data |>
+  #take out raw responses that won't be used for analysis
+  select(-c("oer_1", "oer_2", "oer_3")) |>
+  #temporarily make into tidy data so fidmanip and fiemanip variables can be used to assign condition
+  pivot_longer(fidmanip_1:fiemanip_5,
+               names_to="item",
+               values_to="value") |>
+  #add condition; if fidmanip is detected and there is a value for those midmanip variables, then name as debilitating, same for fiemanip
+  mutate(condition = ifelse(str_detect(item, "fidmanip_")==TRUE && is.na(value)=FALSE, "debilitating", 
+                            ifelse(str_detect(item, "fiemanip_")==TRUE && is.na(value)=FALSE, "enhancing"), NA)) |>
+  #change back to un-tidy data
+  pivot_wider(names_from = "item",
+              values_from = "value")
+
+##### create dataframe with composite scores
+data_composite <- qualtrics_data |>
+  #format into tidy data
+  pivot_longer(competence1:failure6), #1st item in competence scale to last item in failure scale 
+               names_to="item", 
+               values_to="value") |>
+  #reverse score 
+  mutate(#add survey name
+         measure = ifelse(str_detect(item, "competence_")==TRUE, "competence",
+                          ifelse(str_detect(item, "fidmanip_")==TRUE, "biased_fid",
+                                 ifelse(str_detect(item, "fiemanip_")==TRUE, "biased_fie",
+                                        ifelse(str_detect(item, "failure_")==TRUE, "failure", 
+                                               ifelse(str_detect(item, "intelligence_")==TRUE, "intelligence", NA))))),
+         #name the variables that need to be reverse coded
+         reverse_score = ifelse(item == "failure_1" | item == "failure_2" | item == "failure_3", TRUE, FALSE),
+         #add "value with reverse score" (if the variable was flagged to reverse score above, then reverse code, if not, then keep original rating)
+         value_w_rs = ifelse(reverse_score == TRUE, (reverse.code(-1, rating, mini = 1, maxi = 6)), value)) |>
+  group_by(assessment) |>
+  summarise(composite_score = mean(value, na.rm=TRUE)) |>
+  pivote_wider(names_from="assessment",
+               values_from="composite_score")
 ```
 
 ### Confirmatory analysis
@@ -94,6 +262,133 @@ Data preparation following the analysis plan.
 The analyses as specified in the analysis plan.  
 
 *Side-by-side graph with original graph is ideal here*
+
+```{r eval=FALSE}
+### Confirmatory Analysis
+
+#### Reliability Analysis
+
+##### Open-Ended Responses (Study Result: "Intraclass correlation coefficients (ICCs) were high for both measures (performance-oriented responses: ICC = .91; learning-oriented responses: ICC = .90).")
+icc_por <- icc(coded_response_1$coded_por_1, coded_response_2$coded_por_2) #performance oriented responses
+icc_lor <- icc(coded_response_1$coded_lor_1, coded_response_2$coded_lor_2) #learning oriented responses
+
+icc_por
+icc_lor
+
+##### Survey Measures (Study Result: Failure Mindset (Cronbach’s α = .88); Perception of their Children's Competence Survey (α = .79))
+
+###### failure
+rawdata_f <- qualtrics_data |>
+  select(c("failure_1", "failure_2", "failure_3", "failure_4", "failure_5", "failure_6"))
+alpha_f <- alpha(rawdata_f)
+alpha_f
+
+###### competence
+rawdata_c <- qualtrics_data |>
+  select(c("competence_1", "competence_2", "competence_3", "competence_4"))
+alpha_c <- alpha(data_competence$value)
+alpha_c
+
+#### Covariates (Study Result: "There were no effects of child’s age, gender, or socioeconomic status on any of the key variables, so these demographics were not considered in further analyses.")
+
+##### Child's Age
+summary(lm(data_composite$dem_childage ~ data_composite$failure))
+# similar code here for other measures
+
+##### Sex
+summary(lm(data_composite$dem_sex ~ data_composite$failure))
+# similar code here for other measures
+
+##### Education (SES)
+summary(lm(data_composite$dem_education ~ data_composite$failure))
+# similar code here for other measures
+
+#### Manipulation Check (Study Result: "One-sample t tests comparing the mean in each priming condition with the scale’s midpoint (3.5) showed that participants’ agreement with the intended mind-set was above the midpoint in both the failure-is-debilitating condition (M = 4.41, SD  = 1.07), t(56) = 6.45, p < .001, and the failure-is-enhancing condition (M = 5.14, SD = 0.829), t(74) = 17.11, p < .001. Indeed, the manipulation seemed to shift parents’ mind-sets, t(124) = 2.53, p = 0.013: Parents in the failure-is-enhancing condition reported more of a failure-is-enhancing mind-set than did parents in the failure-is-debilitating condition.")
+
+##### Compare mean in each priming condition with midpoint
+summary(t.test(data_composite$biased_fid, mu = 3.5, alternative = "two.sided"))
+summary(t.test(data_composite$biased_fie, mu = 3.5, alternative = "two.sided"))
+
+##### Main Manipulation check
+fie_failure <- data_composite |>
+  select(c("failure", "condition")) |>
+  #get all the failure composites from just FIE condition
+  filter(condition == "enhancing") 
+
+fid_failure <- data_composite |>
+  select(c("failure", "condition")) |>
+  #get all the failure composites from just FIE condition
+  filter(condition == "debilitating")
+
+summary(t.test(fie_failure$failure, fid_failure$failure, alternative = "two.sided", var.equal = FALSE)
+        
+data_manipulation <- data_composite |>
+  select(c("failure", "condition")) |>
+  group_by(condition) |>
+  summarise(
+    count = n(),
+    mean_failure = mean(failure, na.rm = TRUE),
+    sd = sd(failure, na.rm = TRUE), 
+    sem_failure = sd / sqrt(count)
+  )
+
+fig_manipulation <- ggplot(data_manipulation, aes(x=condiiton, y=mean_failure)) +
+  geom_bar(position="dodge", stat="identity") + 
+  geom_errorbar(aes(ymin=mean_failure-sem_failure,
+                    ymax=mean_failure+sem_failure),
+                width=0.1,
+                position=position_dodge(0.9))
+fig_manipulation
+
+#### Did parents in the two conditions (failure-is-debilitating condition and failure-is-enhancing condition) react differently to the child failure scenario?
+
+##### Analysis of Interest (Study Result: “Parents who were induced to hold a failure-is-debilitating mind-set were more likely to react with concerns about their child’s performance and lack of ability, t(131) = 3.246, p < .001, ηp2 = .075 … compared with those who were induced to hold a failure-is-enhancing mind-set.”)
+
+condition_data <- data_composite |>
+  select(c("prolific_id", "condition"))
+por_lor_condition_data <- merge(coded_response, condition_data, by = "prolific_id")
+
+por_lor_enhancing_data <- por_lor_condition_data |>
+  filter(condition == "enhancing") 
+
+por_lor_debilitating_data <- por_lor_condition_data |>
+  filter(condition == "debilitating")
+
+summary(t.test(por_lor_enhancing_data$coded_por, por_lor_debilitating_data$coded_por, alternative = "two.sided", var.equal = FALSE)
+
+por_lor_condition_summary <- por_lor_condition_data |>
+  group_by(condition) |>
+  summarise(
+    count = n(),
+    mean_por = mean(coded_por, na.rm = TRUE),
+    sd_por = sd(coded_por, na.rm = TRUE), 
+    sem_por = sd_por / sqrt(count),
+    mean_lor = mean(coded_lor, na.rm = TRUE),
+    sd_lor = sd(coded_lor, na.rm = TRUE), 
+    sem_lor = sd_lor / sqrt(count)
+  )
+
+fig_por_condition <- ggplot(por_lor_condition_summary, aes(x=condiiton, y=mean_por)) +
+  geom_bar(position="dodge", stat="identity") + 
+  geom_errorbar(aes(ymin=mean_por-sem_por,
+                    ymax=mean_por+sem_por),
+                width=0.1,
+                position=position_dodge(0.9))
+fig_por_condition
+
+##### Other Result (Study Result: "Parents who were induced to hold a failure-is-debilitating mind-set were ... less likely to react with support for their child’s learning and mastery, t(131) = −2.04, p = .043, ηp2 = .031, compared with those who were induced to hold a failure-is-enhancing mind-set (see Fig. 2).")
+
+summary(t.test(por_lor_enhancing_data$coded_lor, por_lor_debilitating_data$coded_lor, alternative = "two.sided", var.equal = FALSE)
+
+fig_lor_condition <- ggplot(por_lor_condition_summary, aes(x=condiiton, y=mean_lor)) +
+  geom_bar(position="dodge", stat="identity") + 
+  geom_errorbar(aes(ymin=mean_lor-sem_lor,
+                    ymax=mean_lor+sem_lor),
+                width=0.1,
+                position=position_dodge(0.9))
+fig_lor_condition
+
+```
 
 ### Exploratory analyses
 
