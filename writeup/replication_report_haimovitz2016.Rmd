@@ -240,6 +240,8 @@ coded_response_2_single <- coded_response_2 |>
 ###### merge all coded response data (both responses that were double scored and single scored)
 data_coded_response <- rbind(coded_response_1_single, coded_response_2_single, coded_response_double)
 
+head(data_coded_response)
+
 ###### remove all coded_response files that are not needed
 remove(coded_response_1_single)
 remove(coded_response_2_single)
@@ -255,6 +257,8 @@ qualtrics_data <- qualtrics_data |>
   #label each participant with the correct condition
   mutate(condition = ifelse(is.na(fid_manip_1) == FALSE, "debilitating", 
                             ifelse(is.na(fie_manip_1) == FALSE, "enhancing", NA)))
+
+head(qualtrics_data)
 
 ##### create dataframe with names of measures and reverse scores
 data_long <- qualtrics_data |>
@@ -273,6 +277,8 @@ data_long <- qualtrics_data |>
          reverse_score = ifelse(item == "failure_1" | item == "failure_2" | item == "failure_3" | item == "intelligence_3" | item == "intelligence_4", TRUE, FALSE),
          #add "value with reverse score" (if the variable was flagged to reverse score above, then reverse code, if not, then keep original rating)
          value_w_rs = ifelse(reverse_score == TRUE, (reverse.code(-1, value, mini = 1, maxi = 6)), value))
+
+head(data_long)
 ```
 
 ### Confirmatory analysis
@@ -285,8 +291,12 @@ data_long <- qualtrics_data |>
 
 ##### Open-Ended Responses (Study Result: "Intraclass correlation coefficients (ICCs) were high for both measures (performance-oriented responses: ICC = .91; learning-oriented responses: ICC = .90).")
 data_icc <- merge(coded_response_1_double, coded_response_2_double, mergeby="prolific_id")
+
+head(data_icc)
+
 data_icc_por <- data_icc |>
   select("coded_por_1", "coded_por_2")
+
 data_icc_lor <- data_icc |>
   select("coded_lor_1", "coded_lor_2")
 
@@ -301,12 +311,18 @@ icc_lor
 ###### failure
 data_raw_f <- qualtrics_data |>
   select(c("failure_1", "failure_2", "failure_3", "failure_4", "failure_5", "failure_6"))
+
+head(data_raw_f)
+
 alpha_f <- alpha(data_raw_f)
 alpha_f
 
 ###### competence
 data_raw_c <- qualtrics_data |>
   select(c("competence_1", "competence_2", "competence_3", "competence_4"))
+
+head(data_raw_c)
+
 alpha_c <- alpha(data_raw_c)
 alpha_c
 
@@ -338,6 +354,8 @@ data_manip_1 <- data_long |>
   group_by(prolific_id, measure) |>
   summarise(composite = mean(value_w_rs))
 
+head(data_manip_1)
+
 ###### make a dataframe for the FID manipulation survey and FIE manipulation survey
 data_manip_1_fid <- data_manip_1 |> 
   filter(measure == "biased_fid")
@@ -353,6 +371,8 @@ data_manip_1_fig <- data_manip_1 |>
   group_by(measure) |>
   summarise(mean = mean(composite, na.rm = TRUE)) |>
   add_row(measure = "mid_point", mean = 3.5)
+
+head(data_manip_1_fig)
 
 ####### generate figure for failure-is-debilitating survey
 data_manip_1_fid_fig <- data_manip_1_fig |>
@@ -389,6 +409,8 @@ data_manip_2 <- data_long |>
   group_by(prolific_id, condition) |>
   summarise(composite_f = mean(value_w_rs))
 
+head(data_manip_2)
+
 ###### make a dataframe for the FID and FIE conditions
 data_manip_2_fid <- data_manip_2 |>
   filter(condition == "debilitating")
@@ -407,6 +429,8 @@ data_manip_2_fig <- data_manip_2 |>
     sd_f = sd(composite_f, na.rm = TRUE), 
     sem_f = sd_f / sqrt(count)
   )
+
+head(data_manip_2_fig)
 
 ###### generate figure 
 fig_manip_2 <- ggplot(data_manip_2_fig, aes(x=condition, y=mean_f)) +
@@ -437,6 +461,8 @@ data_condition <- qualtrics_data |>
 ###### merge with learning-oriented and performance-oriented resopnses
 data_coded_response <- merge(data_coded_response, data_condition, by = "prolific_id")
 
+head(data_coded_response)
+
 ###### make a dataframe for the FID and FIE conditions
 data_coded_response_fie <- data_coded_response |>
   filter(condition == "enhancing")
@@ -458,6 +484,8 @@ data_coded_response_fig <- data_coded_response |>
     sd_lor = sd(coded_lor, na.rm = TRUE), 
     sem_lor = sd_lor / sqrt(count)
   )
+
+head(data_coded_response_fig)
 
 ###### generate figure
 fig_condition_por <- ggplot(data_coded_response_fig, aes(x=condition, y=mean_por)) +
@@ -499,7 +527,7 @@ fig_condition_lor
 ##### Create figure of two pairs of bar graphs that parallels Fig 2 in the original paper
 
 ###### compute relevant information to generate figure
-data_coded_response_fig <- data_coded_response |>
+data_coded_response_combined_fig <- data_coded_response |>
   pivot_longer(coded_por:coded_lor,
                names_to = "response_type",
                values_to = "num_response") |>
@@ -509,8 +537,10 @@ data_coded_response_fig <- data_coded_response |>
             sd = sd(num_response, na.rm = TRUE), 
             sem = sd / sqrt(count),)
 
+head(data_coded_response_combined_fig)
+
 ###### generate figure
-fig_coded_response <- ggplot(data_coded_response_fig, aes(x=response_type, y=mean, group=condition, fill=condition)) +
+fig_coded_response <- ggplot(data_coded_response_combined_fig, aes(x=response_type, y=mean, group=condition, fill=condition)) +
   geom_bar(position="dodge", stat="identity") + 
   geom_errorbar(aes(ymin=mean-sem,
                     ymax=mean+sem),

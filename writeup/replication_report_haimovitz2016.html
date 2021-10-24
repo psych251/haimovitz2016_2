@@ -505,7 +505,15 @@ coded_response_2_single &lt;- coded_response_2 |&gt;
 ###### merge all coded response data (both responses that were double scored and single scored)
 data_coded_response &lt;- rbind(coded_response_1_single, coded_response_2_single, coded_response_double)
 
-###### remove all coded_response files that are not needed
+head(data_coded_response)</code></pre>
+<pre><code>##   prolific_id coded_por coded_lor
+## 1      test_2         1       1.0
+## 2      test_9         1       3.0
+## 3      test_3         0       2.0
+## 4      test_7         0       3.0
+## 5      test_1         2       3.0
+## 6      test_6         1       1.5</code></pre>
+<pre class="r"><code>###### remove all coded_response files that are not needed
 remove(coded_response_1_single)
 remove(coded_response_2_single)
 remove(coded_response_double)
@@ -521,7 +529,24 @@ qualtrics_data &lt;- qualtrics_data |&gt;
   mutate(condition = ifelse(is.na(fid_manip_1) == FALSE, &quot;debilitating&quot;, 
                             ifelse(is.na(fie_manip_1) == FALSE, &quot;enhancing&quot;, NA)))
 
-##### create dataframe with names of measures and reverse scores
+head(qualtrics_data)</code></pre>
+<pre><code>## # A tibble: 6 × 49
+##   StartDate           EndDate             Status     Progress `Duration (in sec…
+##   &lt;dttm&gt;              &lt;dttm&gt;              &lt;chr&gt;         &lt;dbl&gt;              &lt;dbl&gt;
+## 1 2021-10-21 04:16:51 2021-10-21 04:37:23 IP Address      100               1231
+## 2 2021-10-21 05:13:28 2021-10-21 05:32:51 IP Address      100               1162
+## 3 2021-10-21 18:55:26 2021-10-21 19:01:06 IP Address      100                339
+## 4 2021-10-17 23:01:00 2021-10-22 05:14:18 IP Address      100             367998
+## 5 2021-10-22 06:49:25 2021-10-22 07:10:51 IP Address      100               1286
+## 6 2021-10-22 22:25:19 2021-10-22 22:38:38 IP Address      100                799
+## # … with 44 more variables: Finished &lt;lgl&gt;, RecordedDate &lt;dttm&gt;,
+## #   ResponseId &lt;chr&gt;, DistributionChannel &lt;chr&gt;, UserLanguage &lt;chr&gt;,
+## #   competence_1 &lt;dbl&gt;, competence_2 &lt;dbl&gt;, competence_3 &lt;dbl&gt;,
+## #   competence_4 &lt;dbl&gt;, intelligence_1 &lt;dbl&gt;, intelligence_2 &lt;dbl&gt;,
+## #   intelligence_3 &lt;dbl&gt;, intelligence_4 &lt;dbl&gt;, fid_manip_1 &lt;dbl&gt;,
+## #   fid_manip_2 &lt;dbl&gt;, fid_manip_3 &lt;dbl&gt;, fid_manip_4 &lt;dbl&gt;, fid_manip_5 &lt;dbl&gt;,
+## #   fie_manip_1 &lt;dbl&gt;, fie_manip_2 &lt;dbl&gt;, fie_manip_3 &lt;dbl&gt;, …</code></pre>
+<pre class="r"><code>##### create dataframe with names of measures and reverse scores
 data_long &lt;- qualtrics_data |&gt;
   #format into tidy data
   pivot_longer(competence_1:failure_6, #1st item in competence survey to last item in failure survey 
@@ -537,7 +562,25 @@ data_long &lt;- qualtrics_data |&gt;
          #name the variables that need to be reverse coded
          reverse_score = ifelse(item == &quot;failure_1&quot; | item == &quot;failure_2&quot; | item == &quot;failure_3&quot; | item == &quot;intelligence_3&quot; | item == &quot;intelligence_4&quot;, TRUE, FALSE),
          #add &quot;value with reverse score&quot; (if the variable was flagged to reverse score above, then reverse code, if not, then keep original rating)
-         value_w_rs = ifelse(reverse_score == TRUE, (reverse.code(-1, value, mini = 1, maxi = 6)), value))</code></pre>
+         value_w_rs = ifelse(reverse_score == TRUE, (reverse.code(-1, value, mini = 1, maxi = 6)), value))
+
+head(data_long)</code></pre>
+<pre><code>## # A tibble: 6 × 30
+##   StartDate           EndDate             Status     Progress `Duration (in sec…
+##   &lt;dttm&gt;              &lt;dttm&gt;              &lt;chr&gt;         &lt;dbl&gt;              &lt;dbl&gt;
+## 1 2021-10-21 04:16:51 2021-10-21 04:37:23 IP Address      100               1231
+## 2 2021-10-21 04:16:51 2021-10-21 04:37:23 IP Address      100               1231
+## 3 2021-10-21 04:16:51 2021-10-21 04:37:23 IP Address      100               1231
+## 4 2021-10-21 04:16:51 2021-10-21 04:37:23 IP Address      100               1231
+## 5 2021-10-21 04:16:51 2021-10-21 04:37:23 IP Address      100               1231
+## 6 2021-10-21 04:16:51 2021-10-21 04:37:23 IP Address      100               1231
+## # … with 25 more variables: Finished &lt;lgl&gt;, RecordedDate &lt;dttm&gt;,
+## #   ResponseId &lt;chr&gt;, DistributionChannel &lt;chr&gt;, UserLanguage &lt;chr&gt;,
+## #   dem_childage &lt;dbl&gt;, dem_education &lt;ord&gt;, dem_raceethnicity_1 &lt;lgl&gt;,
+## #   dem_raceethnicity_2 &lt;lgl&gt;, dem_raceethnicity_3 &lt;chr&gt;,
+## #   dem_raceethnicity_4 &lt;lgl&gt;, dem_raceethnicity_5 &lt;lgl&gt;,
+## #   dem_raceethnicity_6 &lt;chr&gt;, dem_raceethnicity_7 &lt;lgl&gt;,
+## #   dem_raceethnicity_8 &lt;lgl&gt;, dem_raceethnicity_7_TEXT &lt;lgl&gt;, dem_sex &lt;ord&gt;, …</code></pre>
 </div>
 <div id="confirmatory-analysis" class="section level3">
 <h3>Confirmatory analysis</h3>
@@ -549,8 +592,17 @@ data_long &lt;- qualtrics_data |&gt;
 
 ##### Open-Ended Responses (Study Result: &quot;Intraclass correlation coefficients (ICCs) were high for both measures (performance-oriented responses: ICC = .91; learning-oriented responses: ICC = .90).&quot;)
 data_icc &lt;- merge(coded_response_1_double, coded_response_2_double, mergeby=&quot;prolific_id&quot;)
-data_icc_por &lt;- data_icc |&gt;
+
+head(data_icc)</code></pre>
+<pre><code>##   prolific_id coded_por_1 coded_lor_1 double_1 notes_1 coded_por_2 coded_lor_2
+## 1      test_1           2           3        1 pilot_a           2           3
+## 2      test_6           1           1        1 pilot_a           1           2
+##   double_2 notes_2
+## 1        1 pilot_a
+## 2        1 pilot_a</code></pre>
+<pre class="r"><code>data_icc_por &lt;- data_icc |&gt;
   select(&quot;coded_por_1&quot;, &quot;coded_por_2&quot;)
+
 data_icc_lor &lt;- data_icc |&gt;
   select(&quot;coded_lor_1&quot;, &quot;coded_lor_2&quot;)
 
@@ -598,7 +650,18 @@ icc_por</code></pre>
 ###### failure
 data_raw_f &lt;- qualtrics_data |&gt;
   select(c(&quot;failure_1&quot;, &quot;failure_2&quot;, &quot;failure_3&quot;, &quot;failure_4&quot;, &quot;failure_5&quot;, &quot;failure_6&quot;))
-alpha_f &lt;- alpha(data_raw_f)</code></pre>
+
+head(data_raw_f)</code></pre>
+<pre><code>## # A tibble: 6 × 6
+##   failure_1 failure_2 failure_3 failure_4 failure_5 failure_6
+##       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1         5         6         5         2         1         2
+## 2         4         5         5         3         2         1
+## 3         2         2         3         6         5         2
+## 4         3         4         5         2         2         2
+## 5         4         6         6         3         6         2
+## 6         4         4         4         3         4         3</code></pre>
+<pre class="r"><code>alpha_f &lt;- alpha(data_raw_f)</code></pre>
 <pre><code>## Warning in cor.smooth(r): Matrix was not positive definite, smoothing was done</code></pre>
 <pre><code>## In factor.stats, I could not find the RMSEA upper bound . Sorry about that</code></pre>
 <pre><code>## Warning in alpha(data_raw_f): Some items were negatively correlated with the total scale and probably 
@@ -649,7 +712,18 @@ alpha_f &lt;- alpha(data_raw_f)</code></pre>
 <pre class="r"><code>###### competence
 data_raw_c &lt;- qualtrics_data |&gt;
   select(c(&quot;competence_1&quot;, &quot;competence_2&quot;, &quot;competence_3&quot;, &quot;competence_4&quot;))
-alpha_c &lt;- alpha(data_raw_c)</code></pre>
+
+head(data_raw_c)</code></pre>
+<pre><code>## # A tibble: 6 × 4
+##   competence_1 competence_2 competence_3 competence_4
+##          &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+## 1            2            3            4            5
+## 2            5            6            2            3
+## 3            1            2            2            6
+## 4            2            2            4            5
+## 5            6            6            3            4
+## 6            3            4            4            5</code></pre>
+<pre class="r"><code>alpha_c &lt;- alpha(data_raw_c)</code></pre>
 <pre><code>## Warning in alpha(data_raw_c): Some items were negatively correlated with the total scale and probably 
 ## should be reversed.  
 ## To do this, run the function again with the &#39;check.keys=TRUE&#39; option</code></pre>
@@ -716,6 +790,17 @@ data_manip_1 &lt;- data_long |&gt;
   group_by(prolific_id, measure) |&gt;
   summarise(composite = mean(value_w_rs))</code></pre>
 <pre><code>## `summarise()` has grouped output by &#39;prolific_id&#39;. You can override using the `.groups` argument.</code></pre>
+<pre class="r"><code>head(data_manip_1)</code></pre>
+<pre><code>## # A tibble: 6 × 3
+## # Groups:   prolific_id [6]
+##   prolific_id measure    composite
+##   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
+## 1 test_1      biased_fie       5.2
+## 2 test_2      biased_fid       3.6
+## 3 test_3      biased_fid       4.4
+## 4 test_6      biased_fid       3.2
+## 5 test_7      biased_fie       6  
+## 6 test_9      biased_fie       5</code></pre>
 <pre class="r"><code>###### make a dataframe for the FID manipulation survey and FIE manipulation survey
 data_manip_1_fid &lt;- data_manip_1 |&gt; 
   filter(measure == &quot;biased_fid&quot;)
@@ -753,7 +838,14 @@ data_manip_1_fig &lt;- data_manip_1 |&gt;
   summarise(mean = mean(composite, na.rm = TRUE)) |&gt;
   add_row(measure = &quot;mid_point&quot;, mean = 3.5)
 
-####### generate figure for failure-is-debilitating survey
+head(data_manip_1_fig)</code></pre>
+<pre><code>## # A tibble: 3 × 2
+##   measure     mean
+##   &lt;chr&gt;      &lt;dbl&gt;
+## 1 biased_fid  3.73
+## 2 biased_fie  5.4 
+## 3 mid_point   3.5</code></pre>
+<pre class="r"><code>####### generate figure for failure-is-debilitating survey
 data_manip_1_fid_fig &lt;- data_manip_1_fig |&gt;
   filter(measure != &quot;biased_fie&quot;)
 fig_manip_1_fid &lt;- ggplot(data_manip_1_fid_fig, aes(x=measure, y=mean)) +
@@ -787,6 +879,17 @@ data_manip_2 &lt;- data_long |&gt;
   group_by(prolific_id, condition) |&gt;
   summarise(composite_f = mean(value_w_rs))</code></pre>
 <pre><code>## `summarise()` has grouped output by &#39;prolific_id&#39;. You can override using the `.groups` argument.</code></pre>
+<pre class="r"><code>head(data_manip_2)</code></pre>
+<pre><code>## # A tibble: 6 × 3
+## # Groups:   prolific_id [6]
+##   prolific_id condition    composite_f
+##   &lt;chr&gt;       &lt;chr&gt;              &lt;dbl&gt;
+## 1 test_1      enhancing           1.67
+## 2 test_2      debilitating        2.17
+## 3 test_3      debilitating        4.5 
+## 4 test_6      debilitating        2.5 
+## 5 test_7      enhancing           2.67
+## 6 test_9      enhancing           3.17</code></pre>
 <pre class="r"><code>###### make a dataframe for the FID and FIE conditions
 data_manip_2_fid &lt;- data_manip_2 |&gt;
   filter(condition == &quot;debilitating&quot;)
@@ -816,7 +919,13 @@ data_manip_2_fig &lt;- data_manip_2 |&gt;
     sem_f = sd_f / sqrt(count)
   )
 
-###### generate figure 
+head(data_manip_2_fig)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   condition    count mean_f  sd_f sem_f
+##   &lt;chr&gt;        &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 debilitating     3   3.06 1.26  0.729
+## 2 enhancing        3   2.5  0.764 0.441</code></pre>
+<pre class="r"><code>###### generate figure 
 fig_manip_2 &lt;- ggplot(data_manip_2_fig, aes(x=condition, y=mean_f)) +
   geom_bar(position=&quot;dodge&quot;, stat=&quot;identity&quot;) + 
   geom_errorbar(aes(ymin=mean_f-sem_f,
@@ -846,7 +955,15 @@ data_condition &lt;- qualtrics_data |&gt;
 ###### merge with learning-oriented and performance-oriented resopnses
 data_coded_response &lt;- merge(data_coded_response, data_condition, by = &quot;prolific_id&quot;)
 
-###### make a dataframe for the FID and FIE conditions
+head(data_coded_response)</code></pre>
+<pre><code>##   prolific_id coded_por coded_lor    condition
+## 1      test_1         2       3.0    enhancing
+## 2      test_2         1       1.0 debilitating
+## 3      test_3         0       2.0 debilitating
+## 4      test_6         1       1.5 debilitating
+## 5      test_7         0       3.0    enhancing
+## 6      test_9         1       3.0    enhancing</code></pre>
+<pre class="r"><code>###### make a dataframe for the FID and FIE conditions
 data_coded_response_fie &lt;- data_coded_response |&gt;
   filter(condition == &quot;enhancing&quot;)
 data_coded_response_fid &lt;- data_coded_response |&gt;
@@ -878,7 +995,13 @@ data_coded_response_fig &lt;- data_coded_response |&gt;
     sem_lor = sd_lor / sqrt(count)
   )
 
-###### generate figure
+head(data_coded_response_fig)</code></pre>
+<pre><code>## # A tibble: 2 × 8
+##   condition    count mean_por sd_por sem_por mean_lor sd_lor sem_lor
+##   &lt;chr&gt;        &lt;int&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+## 1 debilitating     3    0.667  0.577   0.333      1.5    0.5   0.289
+## 2 enhancing        3    1      1       0.577      3      0     0</code></pre>
+<pre class="r"><code>###### generate figure
 fig_condition_por &lt;- ggplot(data_coded_response_fig, aes(x=condition, y=mean_por)) +
   geom_bar(position=&quot;dodge&quot;, stat=&quot;identity&quot;) + 
   geom_errorbar(aes(ymin=mean_por-sem_por,
@@ -928,7 +1051,7 @@ fig_condition_lor</code></pre>
 <pre class="r"><code>##### Create figure of two pairs of bar graphs that parallels Fig 2 in the original paper
 
 ###### compute relevant information to generate figure
-data_coded_response_fig &lt;- data_coded_response |&gt;
+data_coded_response_combined_fig &lt;- data_coded_response |&gt;
   pivot_longer(coded_por:coded_lor,
                names_to = &quot;response_type&quot;,
                values_to = &quot;num_response&quot;) |&gt;
@@ -938,8 +1061,17 @@ data_coded_response_fig &lt;- data_coded_response |&gt;
             sd = sd(num_response, na.rm = TRUE), 
             sem = sd / sqrt(count),)</code></pre>
 <pre><code>## `summarise()` has grouped output by &#39;condition&#39;. You can override using the `.groups` argument.</code></pre>
+<pre class="r"><code>head(data_coded_response_combined_fig)</code></pre>
+<pre><code>## # A tibble: 4 × 6
+## # Groups:   condition [2]
+##   condition    response_type count  mean    sd   sem
+##   &lt;chr&gt;        &lt;chr&gt;         &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 debilitating coded_lor         3 1.5   0.5   0.289
+## 2 debilitating coded_por         3 0.667 0.577 0.333
+## 3 enhancing    coded_lor         3 3     0     0    
+## 4 enhancing    coded_por         3 1     1     0.577</code></pre>
 <pre class="r"><code>###### generate figure
-fig_coded_response &lt;- ggplot(data_coded_response_fig, aes(x=response_type, y=mean, group=condition, fill=condition)) +
+fig_coded_response &lt;- ggplot(data_coded_response_combined_fig, aes(x=response_type, y=mean, group=condition, fill=condition)) +
   geom_bar(position=&quot;dodge&quot;, stat=&quot;identity&quot;) + 
   geom_errorbar(aes(ymin=mean-sem,
                     ymax=mean+sem),
