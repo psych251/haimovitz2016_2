@@ -11,7 +11,7 @@
 
 <meta name="author" content="Megumi Takada (metakada@stanford.edu)" />
 
-<meta name="date" content="2021-10-23" />
+<meta name="date" content="2021-10-24" />
 
 <title>Replication of Experiment 4 in ‘’What Predicts Children’s Fixed and Growth Intelligence Mindsets? Not Their Parents’ View of Intelligence but Their Parents’ View of Failure’’ by Haimovitz and Dweck (2016, Psychological Science)</title>
 
@@ -249,7 +249,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Replication of Experiment 4 in ‘’What Predicts Children’s Fixed and Growth Intelligence Mindsets? Not Their Parents’ View of Intelligence but Their Parents’ View of Failure’’ by Haimovitz and Dweck (2016, <em>Psychological Science</em>)</h1>
 <h4 class="author">Megumi Takada (<a href="mailto:metakada@stanford.edu" class="email">metakada@stanford.edu</a>)</h4>
-<h4 class="date">October 23, 2021</h4>
+<h4 class="date">October 24, 2021</h4>
 
 </div>
 
@@ -580,7 +580,7 @@ head(data_long)</code></pre>
 ## #   dem_raceethnicity_2 &lt;lgl&gt;, dem_raceethnicity_3 &lt;chr&gt;,
 ## #   dem_raceethnicity_4 &lt;lgl&gt;, dem_raceethnicity_5 &lt;lgl&gt;,
 ## #   dem_raceethnicity_6 &lt;chr&gt;, dem_raceethnicity_7 &lt;lgl&gt;,
-## #   dem_raceethnicity_8 &lt;lgl&gt;, dem_raceethnicity_7_TEXT &lt;lgl&gt;, dem_sex &lt;ord&gt;, …</code></pre>
+## #   dem_raceethnicity_8 &lt;lgl&gt;, dem_raceethnicity_7_TEXT &lt;lgl&gt;, …</code></pre>
 </div>
 <div id="confirmatory-analysis" class="section level3">
 <h3>Confirmatory analysis</h3>
@@ -1162,12 +1162,12 @@ kable(table(qualtrics_data$dem_education), col.names = c(&quot;Education Level&q
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>##### Male/Female
-kable(table(qualtrics_data$dem_sex), col.names = c(&quot;Sex&quot;, &quot;N&quot;))</code></pre>
+<pre class="r"><code>##### Gender
+kable(table(qualtrics_data$dem_gender), col.names = c(&quot;Gender&quot;, &quot;N&quot;))</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Sex</th>
+<th align="left">Gender</th>
 <th align="right">N</th>
 </tr>
 </thead>
@@ -1179,6 +1179,14 @@ kable(table(qualtrics_data$dem_sex), col.names = c(&quot;Sex&quot;, &quot;N&quot
 <tr class="even">
 <td align="left">Male</td>
 <td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Other</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Prefer not to answer</td>
+<td align="right">0</td>
 </tr>
 </tbody>
 </table>

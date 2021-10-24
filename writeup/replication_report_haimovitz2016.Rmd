@@ -572,8 +572,8 @@ fig_coded_response
 kable(table(qualtrics_data$dem_childage), col.names = c("Child's Age", "N"))
 ##### Education Level
 kable(table(qualtrics_data$dem_education), col.names = c("Education Level", "N"))
-##### Male/Female
-kable(table(qualtrics_data$dem_sex), col.names = c("Sex", "N"))
+##### Gender
+kable(table(qualtrics_data$dem_gender), col.names = c("Gender", "N"))
 ##### Race and Ethnicity (each participant may have chosen more than one category)
 data_race_ethnicity <- qualtrics_data |>
   select(dem_raceethnicity_1:dem_raceethnicity_8) |>
