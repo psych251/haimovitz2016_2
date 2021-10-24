@@ -18,13 +18,13 @@ output:
 Through a series of four experiments, Haimovitz and Dweck (2016) found that parents' views of failure predicted their children's views of intelligence; that is, parents who viewed failure as debilitating (rather than enhancing) were more likely to have children who believed that their intelligence is fixed (rather than malleable). Furthermore, parents' views of failure impacted the way that parents viewed their own children's failure; parents who believed that failure is debilitating focused on their children's performance and ability, instead of their learning. This study suggested that parents' views of failure are displayed to children in tangible ways through specific parenting practices (e.g., being concerned about their children's performance when they fail), which then impact children's own views of intelligence.
 
 ### Project Goals and Procedures
-This project aimed to replicate the results reported in Experiment 4, which found a causal relationship between parents' views of failure and their response to a hypothetical scenario in which their child came home with a failing grade. Just like the original study, this replication study was also conducted online. Parents' views of failure, as well as other information, was collected using an online Qualtrics survey. A biased, 5-item survey was included to manipulate participants' views of failure, followed by an open-ended question that asked participants how they would react to the hypothetical scenario. Participants were parents with children of all ages, and they were recruited through an online recruitment platform called Prolific. The project aimed to recruit about 140 parents, given that the original study tested 132 parents.
+This project aimed to replicate the results reported in Experiment 4, which found a causal relationship between parents' views of failure and their response to a hypothetical scenario in which their child came home with a failing grade. Just like the original study, this replication study was also conducted online. Parents' views of failure, as well as other information, was collected using an online Qualtrics survey. A biased, 5-item survey was included to manipulate participants' views of failure, followed by an open-ended question that asked participants how they would react to the hypothetical scenario. Participants were parents with children of all ages, and they were recruited through an online recruitment platform called Prolific.
 
 ### Anticipated Challenges
 Some parts of the methods outlined in the original paper were open to interpretation, and I relied on being able to reach out to the authors for some clarification. I also anticipated having to spend extra time figuring out how to randomly assign participants to one of two conditions in Qualtrics. Furthermore, the open-ended responses needed to be coded by two raters to assess reliability, so I considered seeking an undergraduate RA or another PYSCH 251 student to help me code these responses. Finally, I anticipated having to spend extra time conducting the statistical analyses, given my limited training in statistics.
 
 ### Project Justification
-This project aligned with my broader interests in social-emotional aspects of learning. While I often work with elementary school student populations, this project gave me an opportunity to study parents and the role *they* play in their children's learning. I thought parents would be especially interesting to study at this time, given that children were more likely to be spending time at home with their parents during the COVID-19 pandemic. In a recent independent project, I found that parents' views of failure were related to their children's reading abilities. This project will allow me to start thinking more deeply about *how* these parental views could possibly cause children to think and perform in a certain way.
+This project aligned with my broader interests in reading mindset interventions. I'm particularly interested in the role that parents and teachers play in fostering children's mindset and reading development. I thought parents would be especially interesting to study at this time, given that children were more likely to be spending time at home with their parents during the COVID-19 pandemic. In a recent independent project, I found that parents' views of failure were related to their children's reading abilities. This project will allow me to start thinking more deeply about *how* these parental views could possibly cause children to think and perform in a certain way.
 
 ### Links
 
@@ -35,7 +35,9 @@ This project aligned with my broader interests in social-emotional aspects of le
 
 ### Power Analysis
 
-Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size.
+Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size. 
+
+(Attempted power analysis using G*Power but will complete this section after clarifying some confusions during office hours.)
 
 ### Planned Sample
 
@@ -147,7 +149,7 @@ You can comment this section out prior to final report with data collection.
 
 Data preparation following the analysis plan.
 	
-```{r eval=FALSE}
+```{r message=FALSE}
 ### Data Preparation
 
 #### Clean Workspace
@@ -158,119 +160,138 @@ library(rmarkdown)
 library(tidyverse)
 library(knitr)
 library(qualtRics)
-library(psych) # for reverse coding
+library(psych) # for reverse coding and ICC
 
 #### Load Data
 
 ##### authenticate API
-qualtrics_api_credentials(api_key = "XXX", base_url="stanforduniversity.ca1.qualtrics.com", install = TRUE)
-##### get qualtrics survey data, load, and save
+#qualtrics_api_credentials(api_key = "XXX", base_url="stanforduniversity.ca1.qualtrics.com", install = TRUE)
+
+##### get Qualtrics survey data, load, and save
 qualtrics_data <- fetch_survey(surveyID = "SV_9yLXExjnUOE8XzM", force_request = TRUE)
-write_csv(qualtrics_data, "./raw_data/qualtrics_data.csv")
+write.csv(qualtrics_data, "../raw_data/qualtrics_data.csv")
 
 ##### load coded_responses from raters 1 and 2
-coded_response_1 <- read.csv("", header = TRUE, sep = ",")
-coded_response_2 <- read.csv("", header = TRUE, sep = ",")
+coded_response_1 <- read.csv("../raw_data/coded_response_1.csv", header = TRUE, sep = ",")
+coded_response_2 <- read.csv("../raw_data/coded_response_2.csv", header = TRUE, sep = ",")
 
 #### Data Exclusion / Filtering
 qualtrics_data <- qualtrics_data |>
-  mutate(DoNotUse = ifelse(id = , 1, NA)) |> #identify which ids need to be excluded
-  filter(is.na(DoNotUse == TRUE)) |> #filter out all the ids that need to be excluded
-  select(-c("DoNotUse"))
+  #identify which ids need to be excluded
+  mutate(DoNotUse = ifelse(prolific_id == "test_4" | prolific_id == "test_5" | prolific_id == "test_8", 
+                           1, NA)) |> 
+  #filter out all the ids that need to be excluded
+  filter(is.na(DoNotUse == TRUE)) |> 
+  select(-c("DoNotUse")) 
+    
 coded_response_1 <- coded_response_1 |>
-  mutate(DoNotUse = ifelse(id = , 1, NA)) |> #identify which ids need to be excluded
-  filter(is.na(DoNotUse == TRUE)) |> #filter out all the ids that need to be excluded
+  #identify which ids need to be excluded
+  mutate(DoNotUse = ifelse(prolific_id == "test_4" | prolific_id == "test_5" | prolific_id == "test_8", 
+                           1, NA)) |> 
+  #filter out all the ids that need to be excluded
+  filter(is.na(DoNotUse == TRUE)) |> 
   select(-c("DoNotUse"))
+
 coded_response_2 <- coded_response_2 |>
-  mutate(DoNotUse = ifelse(id = , 1, NA)) |> #identify which ids need to be excluded
-  filter(is.na(DoNotUse == TRUE)) |> #filter out all the ids that need to be excluded
+  #identify which ids need to be excluded
+  mutate(DoNotUse = ifelse(prolific_id == "test_4" | prolific_id == "test_5" | prolific_id == "test_8", 
+                           1, NA)) |> 
+  #filter out all the ids that need to be excluded
+  filter(is.na(DoNotUse == TRUE)) |> 
   select(-c("DoNotUse"))
 
 #### Prepare Coded Responses Data
 
 ##### get coded responses that were double coded (by both raters) and get average
+
+###### get coded responses from Rater 1 that was double scored
 coded_response_1_double <- coded_response_1 |>
-  filter(is.na(double) == FALSE)
+  filter(is.na(double_1) == FALSE)
+
+###### get coded responses from Rater 2 that was double scored
 coded_response_2_double <- coded_response_2 |>
-  filter(is.na(double) == FALSE)
+  filter(is.na(double_2) == FALSE)
+
+###### put all the double scored responses into one dataframe
 coded_response_double <- merge(coded_response_1_double, coded_response_2_double, by = "prolific_id")
+
+###### take average
 coded_response_double <- coded_response_double |>
-  mutate(coded_por = avg(coded_por_1, coded_por_2),
-         coded_lor = avg(coded_lor_1, coded_lor_2))
-coded_response_double_short <- coded_response_double |>
+  mutate(coded_por = (coded_por_1+coded_por_2)/2,
+         coded_lor = (coded_lor_1+coded_lor_2)/2) |>
   select(c("prolific_id", "coded_por", "coded_lor"))
 
 ##### combine all coded responses (both single coded and double coded ones)
+
 ###### responses that were single scored by Rater 1 
 coded_response_1_single <- coded_response_1 |>
-  filter(is.na(double) == TRUE) |>
+  filter(is.na(double_1) == TRUE) |>
   mutate(coded_por = coded_por_1,
          coded_lor = coded_lor_1) |>
   select(c("prolific_id", "coded_por", "coded_lor"))
+
 ###### responses that were single scored by Rater 2
 coded_response_2_single <- coded_response_2 |>
-  filter(is.na(double) == TRUE) |>
+  filter(is.na(double_2) == TRUE) |>
   mutate(coded_por = coded_por_2,
          coded_lor = coded_lor_2) |>
   select(c("prolific_id", "coded_por", "coded_lor"))
+
 ###### merge all coded response data (both responses that were double scored and single scored)
-coded_response <- rbind(coded_response_1_single, coded_response_2_single, coded_response_double_short)
+data_coded_response <- rbind(coded_response_1_single, coded_response_2_single, coded_response_double)
+
+###### remove all coded_response files that are not needed
+remove(coded_response_1_single)
+remove(coded_response_2_single)
+remove(coded_response_double)
+remove(coded_response_1)
+remove(coded_response_2)
 
 #### Prepare Qualtrics Data
 
-##### label each participant with the correct condition
-###### NOTE TO SELF: Try to find a way on Qualtrics to record Condition so I don't have to code some of this (still keep the part where I take out raw responses)
 qualtrics_data <- qualtrics_data |>
-  #take out raw responses that won't be used for analysis
-  select(-c("oer_1", "oer_2", "oer_3")) |>
-  #temporarily make into tidy data so fidmanip and fiemanip variables can be used to assign condition
-  pivot_longer(fidmanip_1:fiemanip_5,
-               names_to="item",
-               values_to="value") |>
-  #add condition; if fidmanip is detected and there is a value for those midmanip variables, then name as debilitating, same for fiemanip
-  mutate(condition = ifelse(str_detect(item, "fidmanip_")==TRUE && is.na(value)=FALSE, "debilitating", 
-                            ifelse(str_detect(item, "fiemanip_")==TRUE && is.na(value)=FALSE, "enhancing"), NA)) |>
-  #change back to un-tidy data
-  pivot_wider(names_from = "item",
-              values_from = "value")
+  #take out raw open-ended responses and variables that contain DO
+  select(-c("oer_1", "oer_2", "oer_3"), -contains("DO")) |>
+  #label each participant with the correct condition
+  mutate(condition = ifelse(is.na(fid_manip_1) == FALSE, "debilitating", 
+                            ifelse(is.na(fie_manip_1) == FALSE, "enhancing", NA)))
 
-##### create dataframe with composite scores
-data_composite <- qualtrics_data |>
+##### create dataframe with names of measures and reverse scores
+data_long <- qualtrics_data |>
   #format into tidy data
-  pivot_longer(competence1:failure6), #1st item in competence scale to last item in failure scale 
-               names_to="item", 
-               values_to="value") |>
+  pivot_longer(competence_1:failure_6, #1st item in competence survey to last item in failure survey 
+               names_to = "item", 
+               values_to = "value") |>
   #reverse score 
   mutate(#add survey name
          measure = ifelse(str_detect(item, "competence_")==TRUE, "competence",
-                          ifelse(str_detect(item, "fidmanip_")==TRUE, "biased_fid",
-                                 ifelse(str_detect(item, "fiemanip_")==TRUE, "biased_fie",
+                          ifelse(str_detect(item, "fid_manip_")==TRUE, "biased_fid",
+                                 ifelse(str_detect(item, "fie_manip_")==TRUE, "biased_fie",
                                         ifelse(str_detect(item, "failure_")==TRUE, "failure", 
                                                ifelse(str_detect(item, "intelligence_")==TRUE, "intelligence", NA))))),
          #name the variables that need to be reverse coded
-         reverse_score = ifelse(item == "failure_1" | item == "failure_2" | item == "failure_3", TRUE, FALSE),
+         reverse_score = ifelse(item == "failure_1" | item == "failure_2" | item == "failure_3" | item == "intelligence_3" | item == "intelligence_4", TRUE, FALSE),
          #add "value with reverse score" (if the variable was flagged to reverse score above, then reverse code, if not, then keep original rating)
-         value_w_rs = ifelse(reverse_score == TRUE, (reverse.code(-1, rating, mini = 1, maxi = 6)), value)) |>
-  group_by(assessment) |>
-  summarise(composite_score = mean(value, na.rm=TRUE)) |>
-  pivote_wider(names_from="assessment",
-               values_from="composite_score")
+         value_w_rs = ifelse(reverse_score == TRUE, (reverse.code(-1, value, mini = 1, maxi = 6)), value))
 ```
 
 ### Confirmatory analysis
 
-The analyses as specified in the analysis plan.  
-
-*Side-by-side graph with original graph is ideal here*
-
-```{r eval=FALSE}
+#### Reliability analyses
+```{r}
 ### Confirmatory Analysis
 
 #### Reliability Analysis
 
 ##### Open-Ended Responses (Study Result: "Intraclass correlation coefficients (ICCs) were high for both measures (performance-oriented responses: ICC = .91; learning-oriented responses: ICC = .90).")
-icc_por <- icc(coded_response_1$coded_por_1, coded_response_2$coded_por_2) #performance oriented responses
-icc_lor <- icc(coded_response_1$coded_lor_1, coded_response_2$coded_lor_2) #learning oriented responses
+data_icc <- merge(coded_response_1_double, coded_response_2_double, mergeby="prolific_id")
+data_icc_por <- data_icc |>
+  select("coded_por_1", "coded_por_2")
+data_icc_lor <- data_icc |>
+  select("coded_lor_1", "coded_lor_2")
+
+icc_por <- ICC(data_icc_por) #performance oriented responses
+icc_lor <- ICC(data_icc_lor) #learning oriented responses
 
 icc_por
 icc_lor
@@ -278,85 +299,155 @@ icc_lor
 ##### Survey Measures (Study Result: Failure Mindset (Cronbach’s α = .88); Perception of their Children's Competence Survey (α = .79))
 
 ###### failure
-rawdata_f <- qualtrics_data |>
+data_raw_f <- qualtrics_data |>
   select(c("failure_1", "failure_2", "failure_3", "failure_4", "failure_5", "failure_6"))
-alpha_f <- alpha(rawdata_f)
+alpha_f <- alpha(data_raw_f)
 alpha_f
 
 ###### competence
-rawdata_c <- qualtrics_data |>
+data_raw_c <- qualtrics_data |>
   select(c("competence_1", "competence_2", "competence_3", "competence_4"))
-alpha_c <- alpha(data_competence$value)
+alpha_c <- alpha(data_raw_c)
 alpha_c
 
 #### Covariates (Study Result: "There were no effects of child’s age, gender, or socioeconomic status on any of the key variables, so these demographics were not considered in further analyses.")
 
 ##### Child's Age
-summary(lm(data_composite$dem_childage ~ data_composite$failure))
+# summary(lm(data_long$dem_childage ~ data_long$failure))
 # similar code here for other measures
 
 ##### Sex
-summary(lm(data_composite$dem_sex ~ data_composite$failure))
+# summary(lm(data_long$dem_sex ~ data_long$failure))
 # similar code here for other measures
 
 ##### Education (SES)
-summary(lm(data_composite$dem_education ~ data_composite$failure))
+# summary(lm(data_long$dem_education ~ data_long$failure))
 # similar code here for other measures
-
+```
+#### Manipulation Check
+##### Was the parents' agreement with each of the intended mindsets above the midpoint?
+```{r}
 #### Manipulation Check (Study Result: "One-sample t tests comparing the mean in each priming condition with the scale’s midpoint (3.5) showed that participants’ agreement with the intended mind-set was above the midpoint in both the failure-is-debilitating condition (M = 4.41, SD  = 1.07), t(56) = 6.45, p < .001, and the failure-is-enhancing condition (M = 5.14, SD = 0.829), t(74) = 17.11, p < .001. Indeed, the manipulation seemed to shift parents’ mind-sets, t(124) = 2.53, p = 0.013: Parents in the failure-is-enhancing condition reported more of a failure-is-enhancing mind-set than did parents in the failure-is-debilitating condition.")
 
 ##### Compare mean in each priming condition with midpoint
-summary(t.test(data_composite$biased_fid, mu = 3.5, alternative = "two.sided"))
-summary(t.test(data_composite$biased_fie, mu = 3.5, alternative = "two.sided"))
+
+###### get relevant manipulation survey data and compute composite
+data_manip_1 <- data_long |>
+  filter(measure == "biased_fid" | measure == "biased_fie") |>
+  filter(is.na(value_w_rs) == FALSE) |> 
+  group_by(prolific_id, measure) |>
+  summarise(composite = mean(value_w_rs))
+
+###### make a dataframe for the FID manipulation survey and FIE manipulation survey
+data_manip_1_fid <- data_manip_1 |> 
+  filter(measure == "biased_fid")
+data_manip_1_fie <- data_manip_1 |>
+  filter(measure == "biased_fie")
+
+###### Was the parents' agreement with each of the intended mindsets above the midpoint?
+t.test(data_manip_1_fid$composite, mu = 3.5, alternative = "two.sided")
+t.test(data_manip_1_fie$composite, mu = 3.5, alternative = "two.sided")
+
+###### compute mean 
+data_manip_1_fig <- data_manip_1 |>
+  group_by(measure) |>
+  summarise(mean = mean(composite, na.rm = TRUE)) |>
+  add_row(measure = "mid_point", mean = 3.5)
+
+####### generate figure for failure-is-debilitating survey
+data_manip_1_fid_fig <- data_manip_1_fig |>
+  filter(measure != "biased_fie")
+fig_manip_1_fid <- ggplot(data_manip_1_fid_fig, aes(x=measure, y=mean)) +
+  geom_bar(position="dodge", stat="identity") + 
+  ylab("Composite Score of Failure-is-Debilitating Biased Survey") +
+  scale_x_discrete("",
+                   labels=c("biased_fid" = "Failure-is-Debilitating Condition", 
+                            "mid_point" = "Mid-Point Comparison"))
+fig_manip_1_fid
+
+####### generate figure for failure-is-enhancing survey
+data_manip_1_fie_fig <- data_manip_1_fig |>
+  filter(measure != "biased_fid")
+fig_manip_1_fie <- ggplot(data_manip_1_fie_fig, aes(x=measure, y=mean)) +
+  geom_bar(position="dodge", stat="identity") + 
+  ylab("Composite Score of Failure-is-Enhancing Biased Survey") +
+  scale_x_discrete("",
+                   labels=c("biased_fie" = "Failure-is-Enhancing Condition", 
+                            "mid_point" = "Mid-Point Comparison"))
+fig_manip_1_fie
+```
+
+##### Did the parents in the failure-is-debilitating condition report more of a failure-is-debilitating mindset than the parents in the failure-is-enhancing condition?
+```{r}
 
 ##### Main Manipulation check
-fie_failure <- data_composite |>
-  select(c("failure", "condition")) |>
-  #get all the failure composites from just FIE condition
-  filter(condition == "enhancing") 
 
-fid_failure <- data_composite |>
-  select(c("failure", "condition")) |>
-  #get all the failure composites from just FIE condition
+###### get relevant manipulation survey data and compute composite
+data_manip_2 <- data_long |>
+  filter(measure == "failure") |>
+  filter(is.na(value_w_rs) == FALSE) |>
+  group_by(prolific_id, condition) |>
+  summarise(composite_f = mean(value_w_rs))
+
+###### make a dataframe for the FID and FIE conditions
+data_manip_2_fid <- data_manip_2 |>
   filter(condition == "debilitating")
+data_manip_2_fie <- data_manip_2 |>
+  filter(condition == "enhancing")
 
-summary(t.test(fie_failure$failure, fid_failure$failure, alternative = "two.sided", var.equal = FALSE)
-        
-data_manipulation <- data_composite |>
-  select(c("failure", "condition")) |>
+###### Did the parents in the failure-is-debilitating condition report more of a failure-is-debilitating mindset than the parents in the failure-is-enhancing condition?
+t.test(data_manip_2_fid$composite_f, data_manip_2_fie$composite_f, alternative = "two.sided", var.equal = FALSE)
+
+###### compute relevant information to generate figure        
+data_manip_2_fig <- data_manip_2 |>
   group_by(condition) |>
   summarise(
     count = n(),
-    mean_failure = mean(failure, na.rm = TRUE),
-    sd = sd(failure, na.rm = TRUE), 
-    sem_failure = sd / sqrt(count)
+    mean_f = mean(composite_f, na.rm = TRUE),
+    sd_f = sd(composite_f, na.rm = TRUE), 
+    sem_f = sd_f / sqrt(count)
   )
 
-fig_manipulation <- ggplot(data_manipulation, aes(x=condiiton, y=mean_failure)) +
+###### generate figure 
+fig_manip_2 <- ggplot(data_manip_2_fig, aes(x=condition, y=mean_f)) +
   geom_bar(position="dodge", stat="identity") + 
-  geom_errorbar(aes(ymin=mean_failure-sem_failure,
-                    ymax=mean_failure+sem_failure),
+  geom_errorbar(aes(ymin=mean_f-sem_f,
+                    ymax=mean_f+sem_f),
                 width=0.1,
-                position=position_dodge(0.9))
-fig_manipulation
+                position=position_dodge(0.9)) +
+  ylab("Failure Mindset (Failure-Is-Debilitating)") +
+  scale_x_discrete("Condition",
+                   labels=c("debilitating" = "Failure-is-Debilitating Condition", 
+                            "enhancing" = "Failure-is-Enhancing Condition"))
+fig_manip_2
+```
 
+#### Did parents in the two conditions (failure-is-debilitating condition and failure-is-enhancing condition) react differently to the child failure scenario?
+
+##### Main Analysis of Interest: Did parents who hold a failure-is-debilitating mind-set more likely to react with concerns about their child’s performance and lack of ability?
+```{r}
 #### Did parents in the two conditions (failure-is-debilitating condition and failure-is-enhancing condition) react differently to the child failure scenario?
 
 ##### Analysis of Interest (Study Result: “Parents who were induced to hold a failure-is-debilitating mind-set were more likely to react with concerns about their child’s performance and lack of ability, t(131) = 3.246, p < .001, ηp2 = .075 … compared with those who were induced to hold a failure-is-enhancing mind-set.”)
 
-condition_data <- data_composite |>
+###### get parents' condition 
+data_condition <- qualtrics_data |>
   select(c("prolific_id", "condition"))
-por_lor_condition_data <- merge(coded_response, condition_data, by = "prolific_id")
 
-por_lor_enhancing_data <- por_lor_condition_data |>
-  filter(condition == "enhancing") 
+###### merge with learning-oriented and performance-oriented resopnses
+data_coded_response <- merge(data_coded_response, data_condition, by = "prolific_id")
 
-por_lor_debilitating_data <- por_lor_condition_data |>
+###### make a dataframe for the FID and FIE conditions
+data_coded_response_fie <- data_coded_response |>
+  filter(condition == "enhancing")
+data_coded_response_fid <- data_coded_response |>
   filter(condition == "debilitating")
 
-summary(t.test(por_lor_enhancing_data$coded_por, por_lor_debilitating_data$coded_por, alternative = "two.sided", var.equal = FALSE)
+###### Are the number of performance-oriented responses different for the two groups? 
+t.test(data_coded_response_fie$coded_por, data_coded_response_fid$coded_por, alternative = "two.sided", var.equal = FALSE)
 
-por_lor_condition_summary <- por_lor_condition_data |>
+###### compute relevant information to generate figure   
+data_coded_response_fig <- data_coded_response |>
   group_by(condition) |>
   summarise(
     count = n(),
@@ -368,31 +459,107 @@ por_lor_condition_summary <- por_lor_condition_data |>
     sem_lor = sd_lor / sqrt(count)
   )
 
-fig_por_condition <- ggplot(por_lor_condition_summary, aes(x=condiiton, y=mean_por)) +
+###### generate figure
+fig_condition_por <- ggplot(data_coded_response_fig, aes(x=condition, y=mean_por)) +
   geom_bar(position="dodge", stat="identity") + 
   geom_errorbar(aes(ymin=mean_por-sem_por,
                     ymax=mean_por+sem_por),
                 width=0.1,
-                position=position_dodge(0.9))
-fig_por_condition
+                position=position_dodge(0.9)) +
+  ylab("Number of Performance-Oriented Responses") +
+  scale_x_discrete("Condition",
+                   labels=c("debilitating" = "Failure-is-Debilitating Condition", 
+                            "enhancing" = "Failure-is-Enhancing Condition"))
+fig_condition_por
+```
 
+##### Did parents who hold a failure-is-debilitating mind-set less likely to react with support for their child’s learning and mastery?
+```{r}
 ##### Other Result (Study Result: "Parents who were induced to hold a failure-is-debilitating mind-set were ... less likely to react with support for their child’s learning and mastery, t(131) = −2.04, p = .043, ηp2 = .031, compared with those who were induced to hold a failure-is-enhancing mind-set (see Fig. 2).")
 
-summary(t.test(por_lor_enhancing_data$coded_lor, por_lor_debilitating_data$coded_lor, alternative = "two.sided", var.equal = FALSE)
+###### Are the number of learning-oriented responses different for the two groups?
+t.test(data_coded_response_fie$coded_lor, data_coded_response_fid$coded_lor, alternative = "two.sided", var.equal = FALSE)
 
-fig_lor_condition <- ggplot(por_lor_condition_summary, aes(x=condiiton, y=mean_lor)) +
+###### generate figure
+fig_condition_lor <- ggplot(data_coded_response_fig, aes(x=condition, y=mean_lor)) +
   geom_bar(position="dodge", stat="identity") + 
   geom_errorbar(aes(ymin=mean_lor-sem_lor,
                     ymax=mean_lor+sem_lor),
                 width=0.1,
-                position=position_dodge(0.9))
-fig_lor_condition
+                position=position_dodge(0.9)) +
+  ylab("Number of Learning-Oriented Responses") +
+  scale_x_discrete("Condition",
+                   labels=c("debilitating" = "Failure-is-Debilitating Condition", 
+                            "enhancing" = "Failure-is-Enhancing Condition"))
+fig_condition_lor
+```
+
+##### Side-By-Side Comparison with Fig 2 in Haimovitz & Dweck (2016)
+```{r}
+##### Create figure of two pairs of bar graphs that parallels Fig 2 in the original paper
+
+###### compute relevant information to generate figure
+data_coded_response_fig <- data_coded_response |>
+  pivot_longer(coded_por:coded_lor,
+               names_to = "response_type",
+               values_to = "num_response") |>
+  group_by(condition, response_type) |>
+  summarise(count = n(),
+            mean = mean(num_response, na.rm = TRUE),
+            sd = sd(num_response, na.rm = TRUE), 
+            sem = sd / sqrt(count),)
+
+###### generate figure
+fig_coded_response <- ggplot(data_coded_response_fig, aes(x=response_type, y=mean, group=condition, fill=condition)) +
+  geom_bar(position="dodge", stat="identity") + 
+  geom_errorbar(aes(ymin=mean-sem,
+                    ymax=mean+sem),
+                width=0.1,
+                position=position_dodge(0.9)) +
+  scale_x_discrete("Parental Responses to Child-Failure Scenario",
+                   limits=c("coded_por", "coded_lor"),
+                   labels=c("coded_lor" = "Learning-Oriented", 
+                            "coded_por" = "Performance-Oriented")) +
+  ylab("Number of Responses") +
+  theme(legend.position="top", legend.title = element_blank()) +
+  scale_fill_discrete(labels=c("Failure-Is-Debilitating Condition",
+                               "Failure-Is-Enhancing Condition"))
+fig_coded_response
 
 ```
 
+![Fig 2 from Haimovitz & Dweck (2016).](../original_paper/haimovitz2016_fig2.png)
+
 ### Exploratory analyses
 
-Any follow-up analyses desired (not required).  
+#### Demographics of Prolific Sample
+```{r}
+### Exploratory Analysis
+
+#### Demographics
+
+##### Child's Age
+kable(table(qualtrics_data$dem_childage), col.names = c("Child's Age", "N"))
+##### Education Level
+kable(table(qualtrics_data$dem_education), col.names = c("Education Level", "N"))
+##### Male/Female
+kable(table(qualtrics_data$dem_sex), col.names = c("Sex", "N"))
+##### Race and Ethnicity (each participant may have chosen more than one category)
+data_race_ethnicity <- qualtrics_data |>
+  select(dem_raceethnicity_1:dem_raceethnicity_8) |>
+  pivot_longer(dem_raceethnicity_1:dem_raceethnicity_8, 
+               names_to = "qualtrics_category",
+               values_to = "race_ethnicity") |>
+  filter(is.na(race_ethnicity) == FALSE) |> 
+  mutate(count = 1) |> 
+  group_by(race_ethnicity) |>
+  summarise(N = sum(count)) |>
+  kable(col.names = c("Race/Ethnicity", "N"))
+data_race_ethnicity
+
+#### May conduct an ANOVA after clarifying statistical analyses with first author
+```
+
 
 ## Discussion
 
