@@ -177,28 +177,13 @@ coded_response_2 <- read.csv("../raw_data/coded_response_2.csv", header = TRUE, 
 
 #### Data Exclusion / Filtering
 qualtrics_data <- qualtrics_data |>
-  #identify which ids need to be excluded
-  mutate(DoNotUse = ifelse(prolific_id == "test_4" | prolific_id == "test_5" | prolific_id == "test_8", 
-                           1, NA)) |> 
-  #filter out all the ids that need to be excluded
-  filter(is.na(DoNotUse == TRUE)) |> 
-  select(-c("DoNotUse")) 
-    
+  filter(prolific_id != "test_4", prolific_id != "test_5", prolific_id != "test_8")
+
 coded_response_1 <- coded_response_1 |>
-  #identify which ids need to be excluded
-  mutate(DoNotUse = ifelse(prolific_id == "test_4" | prolific_id == "test_5" | prolific_id == "test_8", 
-                           1, NA)) |> 
-  #filter out all the ids that need to be excluded
-  filter(is.na(DoNotUse == TRUE)) |> 
-  select(-c("DoNotUse"))
+  filter(prolific_id != "test_4", prolific_id != "test_5", prolific_id != "test_8")
 
 coded_response_2 <- coded_response_2 |>
-  #identify which ids need to be excluded
-  mutate(DoNotUse = ifelse(prolific_id == "test_4" | prolific_id == "test_5" | prolific_id == "test_8", 
-                           1, NA)) |> 
-  #filter out all the ids that need to be excluded
-  filter(is.na(DoNotUse == TRUE)) |> 
-  select(-c("DoNotUse"))
+  filter(prolific_id != "test_4", prolific_id != "test_5", prolific_id != "test_8")
 
 #### Prepare Coded Responses Data
 
@@ -206,11 +191,11 @@ coded_response_2 <- coded_response_2 |>
 
 ###### get coded responses from Rater 1 that was double scored
 coded_response_1_double <- coded_response_1 |>
-  filter(is.na(double_1) == FALSE)
+  filter(!is.na(double_1))
 
 ###### get coded responses from Rater 2 that was double scored
 coded_response_2_double <- coded_response_2 |>
-  filter(is.na(double_2) == FALSE)
+  filter(!is.na(double_2))
 
 ###### put all the double scored responses into one dataframe
 coded_response_double <- merge(coded_response_1_double, coded_response_2_double, by = "prolific_id")
@@ -225,14 +210,14 @@ coded_response_double <- coded_response_double |>
 
 ###### responses that were single scored by Rater 1 
 coded_response_1_single <- coded_response_1 |>
-  filter(is.na(double_1) == TRUE) |>
+  filter(is.na(double_1)) |>
   mutate(coded_por = coded_por_1,
          coded_lor = coded_lor_1) |>
   select(c("prolific_id", "coded_por", "coded_lor"))
 
 ###### responses that were single scored by Rater 2
 coded_response_2_single <- coded_response_2 |>
-  filter(is.na(double_2) == TRUE) |>
+  filter(is.na(double_2)) |>
   mutate(coded_por = coded_por_2,
          coded_lor = coded_lor_2) |>
   select(c("prolific_id", "coded_por", "coded_lor"))
@@ -255,8 +240,8 @@ qualtrics_data <- qualtrics_data |>
   #take out raw open-ended responses and variables that contain DO
   select(-c("oer_1", "oer_2", "oer_3"), -contains("DO")) |>
   #label each participant with the correct condition
-  mutate(condition = ifelse(is.na(fid_manip_1) == FALSE, "debilitating", 
-                            ifelse(is.na(fie_manip_1) == FALSE, "enhancing", NA)))
+  mutate(condition = ifelse(!is.na(fid_manip_1), "debilitating", 
+                            ifelse(!is.na(fie_manip_1), "enhancing", NA)))
 
 head(qualtrics_data)
 
@@ -314,7 +299,7 @@ data_raw_f <- qualtrics_data |>
 
 head(data_raw_f)
 
-alpha_f <- alpha(data_raw_f)
+alpha_f <- psych::alpha(data_raw_f)
 alpha_f
 
 ###### competence
@@ -323,7 +308,7 @@ data_raw_c <- qualtrics_data |>
 
 head(data_raw_c)
 
-alpha_c <- alpha(data_raw_c)
+alpha_c <- psych::alpha(data_raw_c)
 alpha_c
 
 #### Covariates (Study Result: "There were no effects of child’s age, gender, or socioeconomic status on any of the key variables, so these demographics were not considered in further analyses.")
@@ -350,7 +335,7 @@ alpha_c
 ###### get relevant manipulation survey data and compute composite
 data_manip_1 <- data_long |>
   filter(measure == "biased_fid" | measure == "biased_fie") |>
-  filter(is.na(value_w_rs) == FALSE) |> 
+  filter(!is.na(value_w_rs)) |> 
   group_by(prolific_id, measure) |>
   summarise(composite = mean(value_w_rs))
 
@@ -405,7 +390,7 @@ fig_manip_1_fie
 ###### get relevant manipulation survey data and compute composite
 data_manip_2 <- data_long |>
   filter(measure == "failure") |>
-  filter(is.na(value_w_rs) == FALSE) |>
+  filter(!is.na(value_w_rs)) |>
   group_by(prolific_id, condition) |>
   summarise(composite_f = mean(value_w_rs))
 
@@ -580,7 +565,7 @@ data_race_ethnicity <- qualtrics_data |>
   pivot_longer(dem_raceethnicity_1:dem_raceethnicity_8, 
                names_to = "qualtrics_category",
                values_to = "race_ethnicity") |>
-  filter(is.na(race_ethnicity) == FALSE) |> 
+  filter(!is.na(race_ethnicity)) |> 
   mutate(count = 1) |> 
   group_by(race_ethnicity) |>
   summarise(N = sum(count)) |>
