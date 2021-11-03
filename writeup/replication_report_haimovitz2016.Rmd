@@ -35,13 +35,19 @@ This project aligned with my broader interests in reading mindset interventions.
 
 ### Power Analysis
 
-Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size. 
+*Original effect size of the main analyses:* ηp2 = .075 (d = 0.5695)
 
-(Attempted power analysis using G*Power but will complete this section after clarifying some confusions during office hours.)
+*Power analysis to detect this effect size with an alpha of 0.05:*
+
+ * To achieve 80% power, 100 parents are required.
+ * To achieve 90% power, 132 parents are required.
+ * To achieve 95% power, 164 parents are required.
+ 
+Given the class budget and feasibility in coding all the responses within the duration of the quarter-long class, this replication project aimed to achieve 80% power.
 
 ### Planned Sample
 
-X parents were recruited to achieve Y% power and to account for some participants whose data may not be usable. Parents were recruited through a crowdsourcing platform called Prolific. The participant pool on Prolific was filtered by parental status to specifically reach parents.
+120 parents were recruited to achieve 80% power and to account for some participants whose data may not be usable. Parents were recruited through a crowdsourcing platform called Prolific. The participant pool on Prolific was filtered by parental status to specifically reach parents.
 
 In the original study, 310 adults from a crowdsourcing platform called Amazon Mechanical Turk completed an initial survey asking whether they were a parent. Out of these adults, 132 of them reported to be a parent and were chosen to participate in the study. The sample also had the following demographics: 
 

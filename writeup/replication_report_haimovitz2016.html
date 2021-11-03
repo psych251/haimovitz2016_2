@@ -11,7 +11,7 @@
 
 <meta name="author" content="Megumi Takada (metakada@stanford.edu)" />
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-11-02" />
 
 <title>Replication of Experiment 4 in ‘’What Predicts Children’s Fixed and Growth Intelligence Mindsets? Not Their Parents’ View of Intelligence but Their Parents’ View of Failure’’ by Haimovitz and Dweck (2016, Psychological Science)</title>
 
@@ -249,7 +249,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Replication of Experiment 4 in ‘’What Predicts Children’s Fixed and Growth Intelligence Mindsets? Not Their Parents’ View of Intelligence but Their Parents’ View of Failure’’ by Haimovitz and Dweck (2016, <em>Psychological Science</em>)</h1>
 <h4 class="author">Megumi Takada (<a href="mailto:metakada@stanford.edu" class="email">metakada@stanford.edu</a>)</h4>
-<h4 class="date">October 26, 2021</h4>
+<h4 class="date">November 02, 2021</h4>
 
 </div>
 
@@ -285,12 +285,18 @@ div.tocify {
 <h2>Methods</h2>
 <div id="power-analysis" class="section level3">
 <h3>Power Analysis</h3>
-<p>Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size. Considerations of feasibility for selecting planned sample size.</p>
-<p>(Attempted power analysis using G*Power but will complete this section after clarifying some confusions during office hours.)</p>
+<p><em>Original effect size of the main analyses:</em> ηp2 = .075 (d = 0.5695)</p>
+<p><em>Power analysis to detect this effect size with an alpha of 0.05:</em></p>
+<ul>
+<li>To achieve 80% power, 100 parents are required.</li>
+<li>To achieve 90% power, 132 parents are required.</li>
+<li>To achieve 95% power, 164 parents are required.</li>
+</ul>
+<p>Given the class budget and feasibility in coding all the responses within the duration of the quarter-long class, this replication project aimed to achieve 80% power.</p>
 </div>
 <div id="planned-sample" class="section level3">
 <h3>Planned Sample</h3>
-<p>X parents were recruited to achieve Y% power and to account for some participants whose data may not be usable. Parents were recruited through a crowdsourcing platform called Prolific. The participant pool on Prolific was filtered by parental status to specifically reach parents.</p>
+<p>120 parents were recruited to achieve 80% power and to account for some participants whose data may not be usable. Parents were recruited through a crowdsourcing platform called Prolific. The participant pool on Prolific was filtered by parental status to specifically reach parents.</p>
 <p>In the original study, 310 adults from a crowdsourcing platform called Amazon Mechanical Turk completed an initial survey asking whether they were a parent. Out of these adults, 132 of them reported to be a parent and were chosen to participate in the study. The sample also had the following demographics:</p>
 <ul>
 <li>“57% female”</li>
@@ -442,28 +448,13 @@ coded_response_1 &lt;- read.csv(&quot;../raw_data/coded_response_1.csv&quot;, he
 ## coded_response_2.csv&#39;</code></pre>
 <pre class="r"><code>#### Data Exclusion / Filtering
 qualtrics_data &lt;- qualtrics_data |&gt;
-  #identify which ids need to be excluded
-  mutate(DoNotUse = ifelse(prolific_id == &quot;test_4&quot; | prolific_id == &quot;test_5&quot; | prolific_id == &quot;test_8&quot;, 
-                           1, NA)) |&gt; 
-  #filter out all the ids that need to be excluded
-  filter(is.na(DoNotUse == TRUE)) |&gt; 
-  select(-c(&quot;DoNotUse&quot;)) 
-    
+  filter(prolific_id != &quot;test_4&quot;, prolific_id != &quot;test_5&quot;, prolific_id != &quot;test_8&quot;)
+
 coded_response_1 &lt;- coded_response_1 |&gt;
-  #identify which ids need to be excluded
-  mutate(DoNotUse = ifelse(prolific_id == &quot;test_4&quot; | prolific_id == &quot;test_5&quot; | prolific_id == &quot;test_8&quot;, 
-                           1, NA)) |&gt; 
-  #filter out all the ids that need to be excluded
-  filter(is.na(DoNotUse == TRUE)) |&gt; 
-  select(-c(&quot;DoNotUse&quot;))
+  filter(prolific_id != &quot;test_4&quot;, prolific_id != &quot;test_5&quot;, prolific_id != &quot;test_8&quot;)
 
 coded_response_2 &lt;- coded_response_2 |&gt;
-  #identify which ids need to be excluded
-  mutate(DoNotUse = ifelse(prolific_id == &quot;test_4&quot; | prolific_id == &quot;test_5&quot; | prolific_id == &quot;test_8&quot;, 
-                           1, NA)) |&gt; 
-  #filter out all the ids that need to be excluded
-  filter(is.na(DoNotUse == TRUE)) |&gt; 
-  select(-c(&quot;DoNotUse&quot;))
+  filter(prolific_id != &quot;test_4&quot;, prolific_id != &quot;test_5&quot;, prolific_id != &quot;test_8&quot;)
 
 #### Prepare Coded Responses Data
 
@@ -471,11 +462,11 @@ coded_response_2 &lt;- coded_response_2 |&gt;
 
 ###### get coded responses from Rater 1 that was double scored
 coded_response_1_double &lt;- coded_response_1 |&gt;
-  filter(is.na(double_1) == FALSE)
+  filter(!is.na(double_1))
 
 ###### get coded responses from Rater 2 that was double scored
 coded_response_2_double &lt;- coded_response_2 |&gt;
-  filter(is.na(double_2) == FALSE)
+  filter(!is.na(double_2))
 
 ###### put all the double scored responses into one dataframe
 coded_response_double &lt;- merge(coded_response_1_double, coded_response_2_double, by = &quot;prolific_id&quot;)
@@ -490,14 +481,14 @@ coded_response_double &lt;- coded_response_double |&gt;
 
 ###### responses that were single scored by Rater 1 
 coded_response_1_single &lt;- coded_response_1 |&gt;
-  filter(is.na(double_1) == TRUE) |&gt;
+  filter(is.na(double_1)) |&gt;
   mutate(coded_por = coded_por_1,
          coded_lor = coded_lor_1) |&gt;
   select(c(&quot;prolific_id&quot;, &quot;coded_por&quot;, &quot;coded_lor&quot;))
 
 ###### responses that were single scored by Rater 2
 coded_response_2_single &lt;- coded_response_2 |&gt;
-  filter(is.na(double_2) == TRUE) |&gt;
+  filter(is.na(double_2)) |&gt;
   mutate(coded_por = coded_por_2,
          coded_lor = coded_lor_2) |&gt;
   select(c(&quot;prolific_id&quot;, &quot;coded_por&quot;, &quot;coded_lor&quot;))
@@ -526,8 +517,8 @@ qualtrics_data &lt;- qualtrics_data |&gt;
   #take out raw open-ended responses and variables that contain DO
   select(-c(&quot;oer_1&quot;, &quot;oer_2&quot;, &quot;oer_3&quot;), -contains(&quot;DO&quot;)) |&gt;
   #label each participant with the correct condition
-  mutate(condition = ifelse(is.na(fid_manip_1) == FALSE, &quot;debilitating&quot;, 
-                            ifelse(is.na(fie_manip_1) == FALSE, &quot;enhancing&quot;, NA)))
+  mutate(condition = ifelse(!is.na(fid_manip_1), &quot;debilitating&quot;, 
+                            ifelse(!is.na(fie_manip_1), &quot;enhancing&quot;, NA)))
 
 head(qualtrics_data)</code></pre>
 <pre><code>## # A tibble: 6 × 49
@@ -661,10 +652,10 @@ head(data_raw_f)</code></pre>
 ## 4         3         4         5         2         2         2
 ## 5         4         6         6         3         6         2
 ## 6         4         4         4         3         4         3</code></pre>
-<pre class="r"><code>alpha_f &lt;- alpha(data_raw_f)</code></pre>
+<pre class="r"><code>alpha_f &lt;- psych::alpha(data_raw_f)</code></pre>
 <pre><code>## Warning in cor.smooth(r): Matrix was not positive definite, smoothing was done</code></pre>
 <pre><code>## In factor.stats, I could not find the RMSEA upper bound . Sorry about that</code></pre>
-<pre><code>## Warning in alpha(data_raw_f): Some items were negatively correlated with the total scale and probably 
+<pre><code>## Warning in psych::alpha(data_raw_f): Some items were negatively correlated with the total scale and probably 
 ## should be reversed.  
 ## To do this, run the function again with the &#39;check.keys=TRUE&#39; option</code></pre>
 <pre><code>## Some items ( failure_4 failure_5 failure_6 ) were negatively correlated with the total scale and 
@@ -675,7 +666,7 @@ head(data_raw_f)</code></pre>
 <pre class="r"><code>alpha_f</code></pre>
 <pre><code>## 
 ## Reliability analysis   
-## Call: alpha(x = data_raw_f)
+## Call: psych::alpha(x = data_raw_f)
 ## 
 ##   raw_alpha std.alpha G6(smc) average_r  S/N  ase mean   sd median_r
 ##      -0.18     -0.11    0.86    -0.017 -0.1 0.78  3.6 0.51    -0.13
@@ -723,8 +714,8 @@ head(data_raw_c)</code></pre>
 ## 4            2            2            4            5
 ## 5            6            6            3            4
 ## 6            3            4            4            5</code></pre>
-<pre class="r"><code>alpha_c &lt;- alpha(data_raw_c)</code></pre>
-<pre><code>## Warning in alpha(data_raw_c): Some items were negatively correlated with the total scale and probably 
+<pre class="r"><code>alpha_c &lt;- psych::alpha(data_raw_c)</code></pre>
+<pre><code>## Warning in psych::alpha(data_raw_c): Some items were negatively correlated with the total scale and probably 
 ## should be reversed.  
 ## To do this, run the function again with the &#39;check.keys=TRUE&#39; option</code></pre>
 <pre><code>## Some items ( competence_3 competence_4 ) were negatively correlated with the total scale and 
@@ -733,7 +724,7 @@ head(data_raw_c)</code></pre>
 <pre class="r"><code>alpha_c</code></pre>
 <pre><code>## 
 ## Reliability analysis   
-## Call: alpha(x = data_raw_c)
+## Call: psych::alpha(x = data_raw_c)
 ## 
 ##   raw_alpha std.alpha G6(smc) average_r  S/N  ase mean  sd median_r
 ##      -0.24      -1.5    0.38     -0.18 -0.6 0.53  3.7 0.7    -0.27
@@ -786,7 +777,7 @@ head(data_raw_c)</code></pre>
 ###### get relevant manipulation survey data and compute composite
 data_manip_1 &lt;- data_long |&gt;
   filter(measure == &quot;biased_fid&quot; | measure == &quot;biased_fie&quot;) |&gt;
-  filter(is.na(value_w_rs) == FALSE) |&gt; 
+  filter(!is.na(value_w_rs)) |&gt; 
   group_by(prolific_id, measure) |&gt;
   summarise(composite = mean(value_w_rs))</code></pre>
 <pre><code>## `summarise()` has grouped output by &#39;prolific_id&#39;. You can override using the `.groups` argument.</code></pre>
@@ -875,7 +866,7 @@ fig_manip_1_fie</code></pre>
 ###### get relevant manipulation survey data and compute composite
 data_manip_2 &lt;- data_long |&gt;
   filter(measure == &quot;failure&quot;) |&gt;
-  filter(is.na(value_w_rs) == FALSE) |&gt;
+  filter(!is.na(value_w_rs)) |&gt;
   group_by(prolific_id, condition) |&gt;
   summarise(composite_f = mean(value_w_rs))</code></pre>
 <pre><code>## `summarise()` has grouped output by &#39;prolific_id&#39;. You can override using the `.groups` argument.</code></pre>
@@ -1196,7 +1187,7 @@ data_race_ethnicity &lt;- qualtrics_data |&gt;
   pivot_longer(dem_raceethnicity_1:dem_raceethnicity_8, 
                names_to = &quot;qualtrics_category&quot;,
                values_to = &quot;race_ethnicity&quot;) |&gt;
-  filter(is.na(race_ethnicity) == FALSE) |&gt; 
+  filter(!is.na(race_ethnicity)) |&gt; 
   mutate(count = 1) |&gt; 
   group_by(race_ethnicity) |&gt;
   summarise(N = sum(count)) |&gt;
