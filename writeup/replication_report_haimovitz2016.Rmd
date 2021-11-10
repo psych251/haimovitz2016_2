@@ -10,8 +10,6 @@ output:
       collapsed: false
 ---
 
-<!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
-
 ## Introduction
 
 ### Overview of Original Study
@@ -21,7 +19,7 @@ Through a series of four experiments, Haimovitz and Dweck (2016) found that pare
 This project aimed to replicate the results reported in Experiment 4, which found a causal relationship between parents' views of failure and their response to a hypothetical scenario in which their child came home with a failing grade. Just like the original study, this replication study was also conducted online. Parents' views of failure, as well as other information, was collected using an online Qualtrics survey. A biased, 5-item survey was included to manipulate participants' views of failure, followed by an open-ended question that asked participants how they would react to the hypothetical scenario. Participants were parents with children of all ages, and they were recruited through an online recruitment platform called Prolific.
 
 ### Anticipated Challenges
-Some parts of the methods outlined in the original paper were open to interpretation, and I relied on being able to reach out to the authors for some clarification. I also anticipated having to spend extra time figuring out how to randomly assign participants to one of two conditions in Qualtrics. Furthermore, the open-ended responses needed to be coded by two raters to assess reliability, so I considered seeking an undergraduate RA or another PYSCH 251 student to help me code these responses. Finally, I anticipated having to spend extra time conducting the statistical analyses, given my limited training in statistics.
+Some parts of the methods outlined in the original paper were open to interpretation, and I relied on being able to reach out to the authors for some clarification. I also anticipated having to spend extra time figuring out how to randomly assign participants to one of two conditions in Qualtrics. Furthermore, the open-ended responses were coded by two raters in the original study, so I considered seeking an undergraduate RA or another PYSCH 251 student to help me code these responses. Finally, I anticipated needing extra time to carefully and reliably code the open-ended responses. 
 
 ### Project Justification
 This project aligned with my broader interests in reading mindset interventions. I'm particularly interested in the role that parents and teachers play in fostering children's mindset and reading development. I thought parents would be especially interesting to study at this time, given that children were more likely to be spending time at home with their parents during the COVID-19 pandemic. In a recent independent project, I found that parents' views of failure were related to their children's reading abilities. This project will allow me to start thinking more deeply about *how* these parental views could possibly cause children to think and perform in a certain way.
@@ -69,6 +67,8 @@ Additionally, all survey items included in the supplementary ["Materials and Met
 
 From reading the original article and supplementary document, it was not clear whether the middle points on the Likert scale were labelled. Based on similar studies examining intelligence mindsets, I decided to label the middle points with "mostly dis/agree" and "slightly dis/agree." It was also unclear what "other items" were included in the final survey asking participants to report on their failure mindsets. These "other items" were not needed to replicate the main results, so they were omitted from this replication study. As I was also not sure where to collect demographic data (i.e., sex, race, education level, child's age), I decided to collect this information as part of the final survey at the very end of the study.
 
+Furthermore, I decided to include a funnel debrief at the end to make sure that the effects I observed were due to priming rather than explicit consistency biases. The funnel debrief included questions to assess whether the participants were trying to be consistent with their own responses. These questions were not a part of the original study. 
+
 Here is a link to the survey that was used to conduct the replication study: 
 https://stanforduniversity.qualtrics.com/jfe/form/SV_9yLXExjnUOE8XzM
 
@@ -84,14 +84,24 @@ The following procedures from the original article outlined how the open-ended r
 
 > Scores for performance-oriented and learning-oriented responses were each created by summing all instances of their respective subcategories. Two coders rated 20 responses (15%) to assess reliability."
 
-I recruited an undergraduate RA to serve as the second rater, and we ensured we were blind to condition by randomly scrambling the responses. As there was already a coding scheme developed by the original authors, we did not create our own coding scheme. Rather, we carefully reviewed the coding scheme outlined in the supplementary document to code the responses.
+As there was already a coding scheme developed by the original authors, I did not create my own coding scheme. Rather, I carefully reviewed the coding scheme outlined in the supplementary document to code the responses. I considered recruiting an undergraduate RA or another PSYCH 251 student to serve as the second rater, but in the end, I decided to code all of the responses on my own. I came to this decision when I noticed it takes a while to get used to the coding scheme outlined by the authors. Given that the project needed to be completed in a quarter, it didn't seem feasible to recruit another student and have them reliably code the responses in this short time frame. With the support of the teaching team that helped me scramble the responses, I was able to ensure that I remained blind to condition.
 
-### Analysis Plan
-
-The following analyses were conducted to align with the results outlined in the original article. 
+### Confirmatory Analysis Plan
 
 #### Data Exclusion
 The original paper did not mention whether participants were excluded, but in this replication study, I planned to exclude data from participants if the open-ended responses were unintelligible.
+
+#### Key Analysis of Interest
+
+**The key analysis of interest will be an unpaired, two-tailed t test comparing performance-oriented responses between the two conditions. The analysis will aim to replicate the following result:**
+
+>"Parents who were induced to hold a failure-is-debilitating mind-set were more likely to react with concerns about their child’s performance and lack of ability, t(131) = 3.246, p < .001, ηp2 = .075 ... compared with those who were induced to hold a failure-is-enhancing mind-set."
+
+This finding was chosen as the main analysis of interest, as the purpose of Study 4 was to examine whether there was a causal effect of parents' failure mindset on their reaction to a scenario in which their child hypothetically came home with a failing grade. In the original study, two t tests were conducted to compare both performance-oriented responses and learning-oriented responses between the two conditions. The difference observed in performance-oriented responses had a larger effect size and was therefore chosen as the main, confirmatory analysis of interest. As an exploratory analysis, I aimed to replicate the difference observed in learning-oriented responses (i.e., "Parents who were induced to hold a failure-is-debilitating mind-set were ... less likely to react with support for their child’s learning and mastery, t(131) = −2.04, p = .043, ηp2 = .031, compared with those who were induced to hold a failure-is-enhancing mind-set (see Fig. 2)."
+
+### Exploratory Analysis Plan
+
+The exploratory analysis aimed to replicate other findings reported in the original study. [add more details here]
 
 #### Creating Composite Scores
 Following the procedures outlined in Study 1, composite scores were calculated for each survey. 
@@ -117,21 +127,13 @@ Independent t tests were conducted to examine whether parents with failure-is-de
 
 To rule out other explanations, the authors controlled for parents' perception of children's competence in school in an analyses that appears to be a t test: "When we controlled for parents’ perception of their children’s competence in school, failure-mind-set condition still predicted performance-oriented, t(131) = 3.249, p = .002, and learning-oriented, t(1, 131) = −2.02, p =.046, responses to children’s failure."
 
-#### Key Analysis of Interest
-
-**The key analysis of interest will be an independent t test to replicate the following result:**
-
->"Parents who were induced to hold a failure-is-debilitating mind-set were more likely to react with concerns about their child’s performance and lack of ability, t(131) = 3.246, p < .001, ηp2 = .075 ... compared with those who were induced to hold a failure-is-enhancing mind-set."
-
-This finding was chosen as the main analysis of interest, as the purpose of Study 4 was to examine whether there was a causal effect of parents' failure mindset on their reaction to a scenario in which their child hypothetically came home with a failing grade. Two t tests were conducted to compare both performance-oriented responses and learning-oriented responses between the two conditions. The difference observed in performance-oriented responses had a larger effect size and was therefore chosen as the main analysis of interest. However, I also attempted to replicate the difference observed in learning-oriented responses (i.e., "Parents who were induced to hold a failure-is-debilitating mind-set were ... less likely to react with support for their child’s learning and mastery, t(131) = −2.04, p = .043, ηp2 = .031, compared with those who were induced to hold a failure-is-enhancing mind-set (see Fig. 2)."
-
 ### Differences from Original Study
 
-Here were some of the differences between the current replication study and the original study: 
+I attempted as faithful a replication as possible, but there were some differences between the current replication study and the original study. 
 
 * **Crowdsourcing Platform**: The original study was conducted on Amazon Mechanical Turk, but the current project used Prolific. Both Amazon Mechanical Turk and Prolific are crowdsourcing platforms, so the study procedures were fairly similar. Prolific seems to provide higher data quality, so the results in this replication project may show higher internal consistency for survey measures and better overall data quality.
 
-* **Procedures**: Some parts of the procedures in the original article were unclear, specifically the labels of the middle points on the Likert scale, as well as the items in the final survey. It is common to have "mostly dis/agree" and "slightly dis/agree" as labels in such surveys, so this potential difference should not compromise the results. Adding demographic questions at the very end of the final survey should not change the claims in the original article as well. Even in the unlikely scenario that demographic questions made parents think in a certain way, it was possible to avoid having these questions affect the results by including the questions at the very end of the study and disabling going back to previous questions.
+* **Procedures**: Some parts of the procedures in the original article were unclear, specifically the labels of the middle points on the Likert scale, as well as the items in the final survey. It is common to have "mostly dis/agree" and "slightly dis/agree" as labels in such surveys, so this potential difference should not compromise the results. Adding demographic questions at the very end of the final survey should not change the claims in the original article as well. Even in the unlikely scenario that demographic questions made parents think in a certain way, it was possible to avoid having these questions affect the results by including the questions at the very end of the study and disabling going back to previous questions. Furthermore, a funnel debrief was added at the end to rule out the possibility that explicit, consistent biases were driving observed effects. Finally, only one rater coded the responses, rather than two raters. 
 
 * **Coding Scheme**: In the original study, the coding scheme was developed by reading through the open-ended responses and developing a coding scheme based on those responses. In this project, a new coding scheme was not made; rather, the original coding scheme was adopted. Creating a new coding scheme based on the responses collected in this replication study may have fundamentally changed the open-ended response measure. As the original study included a fairly large sample size and was likely to have represented a variety of responses, I anticipated that the coding scheme created by the authors would work well for this replication study as well.
 
@@ -273,169 +275,6 @@ head(data_long)
 ```
 
 ### Confirmatory analysis
-
-#### Reliability analyses
-```{r}
-### Confirmatory Analysis
-
-#### Reliability Analysis
-
-##### Open-Ended Responses (Study Result: "Intraclass correlation coefficients (ICCs) were high for both measures (performance-oriented responses: ICC = .91; learning-oriented responses: ICC = .90).")
-data_icc <- merge(coded_response_1_double, coded_response_2_double, mergeby="prolific_id")
-
-head(data_icc)
-
-data_icc_por <- data_icc |>
-  select("coded_por_1", "coded_por_2")
-
-data_icc_lor <- data_icc |>
-  select("coded_lor_1", "coded_lor_2")
-
-icc_por <- ICC(data_icc_por) #performance oriented responses
-icc_lor <- ICC(data_icc_lor) #learning oriented responses
-
-icc_por
-icc_lor
-
-##### Survey Measures (Study Result: Failure Mindset (Cronbach’s α = .88); Perception of their Children's Competence Survey (α = .79))
-
-###### failure
-data_raw_f <- qualtrics_data |>
-  select(c("failure_1", "failure_2", "failure_3", "failure_4", "failure_5", "failure_6"))
-
-head(data_raw_f)
-
-alpha_f <- psych::alpha(data_raw_f)
-alpha_f
-
-###### competence
-data_raw_c <- qualtrics_data |>
-  select(c("competence_1", "competence_2", "competence_3", "competence_4"))
-
-head(data_raw_c)
-
-alpha_c <- psych::alpha(data_raw_c)
-alpha_c
-
-#### Covariates (Study Result: "There were no effects of child’s age, gender, or socioeconomic status on any of the key variables, so these demographics were not considered in further analyses.")
-
-##### Child's Age
-# summary(lm(data_long$dem_childage ~ data_long$failure))
-# similar code here for other measures
-
-##### Sex
-# summary(lm(data_long$dem_sex ~ data_long$failure))
-# similar code here for other measures
-
-##### Education (SES)
-# summary(lm(data_long$dem_education ~ data_long$failure))
-# similar code here for other measures
-```
-#### Manipulation Check
-##### Was the parents' agreement with each of the intended mindsets above the midpoint?
-```{r}
-#### Manipulation Check (Study Result: "One-sample t tests comparing the mean in each priming condition with the scale’s midpoint (3.5) showed that participants’ agreement with the intended mind-set was above the midpoint in both the failure-is-debilitating condition (M = 4.41, SD  = 1.07), t(56) = 6.45, p < .001, and the failure-is-enhancing condition (M = 5.14, SD = 0.829), t(74) = 17.11, p < .001. Indeed, the manipulation seemed to shift parents’ mind-sets, t(124) = 2.53, p = 0.013: Parents in the failure-is-enhancing condition reported more of a failure-is-enhancing mind-set than did parents in the failure-is-debilitating condition.")
-
-##### Compare mean in each priming condition with midpoint
-
-###### get relevant manipulation survey data and compute composite
-data_manip_1 <- data_long |>
-  filter(measure == "biased_fid" | measure == "biased_fie") |>
-  filter(!is.na(value_w_rs)) |> 
-  group_by(prolific_id, measure) |>
-  summarise(composite = mean(value_w_rs))
-
-head(data_manip_1)
-
-###### make a dataframe for the FID manipulation survey and FIE manipulation survey
-data_manip_1_fid <- data_manip_1 |> 
-  filter(measure == "biased_fid")
-data_manip_1_fie <- data_manip_1 |>
-  filter(measure == "biased_fie")
-
-###### Was the parents' agreement with each of the intended mindsets above the midpoint?
-t.test(data_manip_1_fid$composite, mu = 3.5, alternative = "two.sided")
-t.test(data_manip_1_fie$composite, mu = 3.5, alternative = "two.sided")
-
-###### compute mean 
-data_manip_1_fig <- data_manip_1 |>
-  group_by(measure) |>
-  summarise(mean = mean(composite, na.rm = TRUE)) |>
-  add_row(measure = "mid_point", mean = 3.5)
-
-head(data_manip_1_fig)
-
-####### generate figure for failure-is-debilitating survey
-data_manip_1_fid_fig <- data_manip_1_fig |>
-  filter(measure != "biased_fie")
-fig_manip_1_fid <- ggplot(data_manip_1_fid_fig, aes(x=measure, y=mean)) +
-  geom_bar(position="dodge", stat="identity") + 
-  ylab("Composite Score of Failure-is-Debilitating Biased Survey") +
-  scale_x_discrete("",
-                   labels=c("biased_fid" = "Failure-is-Debilitating Condition", 
-                            "mid_point" = "Mid-Point Comparison"))
-fig_manip_1_fid
-
-####### generate figure for failure-is-enhancing survey
-data_manip_1_fie_fig <- data_manip_1_fig |>
-  filter(measure != "biased_fid")
-fig_manip_1_fie <- ggplot(data_manip_1_fie_fig, aes(x=measure, y=mean)) +
-  geom_bar(position="dodge", stat="identity") + 
-  ylab("Composite Score of Failure-is-Enhancing Biased Survey") +
-  scale_x_discrete("",
-                   labels=c("biased_fie" = "Failure-is-Enhancing Condition", 
-                            "mid_point" = "Mid-Point Comparison"))
-fig_manip_1_fie
-```
-
-##### Did the parents in the failure-is-debilitating condition report more of a failure-is-debilitating mindset than the parents in the failure-is-enhancing condition?
-```{r}
-
-##### Main Manipulation check
-
-###### get relevant manipulation survey data and compute composite
-data_manip_2 <- data_long |>
-  filter(measure == "failure") |>
-  filter(!is.na(value_w_rs)) |>
-  group_by(prolific_id, condition) |>
-  summarise(composite_f = mean(value_w_rs))
-
-head(data_manip_2)
-
-###### make a dataframe for the FID and FIE conditions
-data_manip_2_fid <- data_manip_2 |>
-  filter(condition == "debilitating")
-data_manip_2_fie <- data_manip_2 |>
-  filter(condition == "enhancing")
-
-###### Did the parents in the failure-is-debilitating condition report more of a failure-is-debilitating mindset than the parents in the failure-is-enhancing condition?
-t.test(data_manip_2_fid$composite_f, data_manip_2_fie$composite_f, alternative = "two.sided", var.equal = FALSE)
-
-###### compute relevant information to generate figure        
-data_manip_2_fig <- data_manip_2 |>
-  group_by(condition) |>
-  summarise(
-    count = n(),
-    mean_f = mean(composite_f, na.rm = TRUE),
-    sd_f = sd(composite_f, na.rm = TRUE), 
-    sem_f = sd_f / sqrt(count)
-  )
-
-head(data_manip_2_fig)
-
-###### generate figure 
-fig_manip_2 <- ggplot(data_manip_2_fig, aes(x=condition, y=mean_f)) +
-  geom_bar(position="dodge", stat="identity") + 
-  geom_errorbar(aes(ymin=mean_f-sem_f,
-                    ymax=mean_f+sem_f),
-                width=0.1,
-                position=position_dodge(0.9)) +
-  ylab("Failure Mindset (Failure-Is-Debilitating)") +
-  scale_x_discrete("Condition",
-                   labels=c("debilitating" = "Failure-is-Debilitating Condition", 
-                            "enhancing" = "Failure-is-Enhancing Condition"))
-fig_manip_2
-```
 
 #### Did parents in the two conditions (failure-is-debilitating condition and failure-is-enhancing condition) react differently to the child failure scenario?
 
@@ -581,6 +420,167 @@ data_race_ethnicity
 #### May conduct an ANOVA after clarifying statistical analyses with first author
 ```
 
+#### Reliability analyses
+```{r}
+#### Reliability Analysis
+
+##### Open-Ended Responses (Study Result: "Intraclass correlation coefficients (ICCs) were high for both measures (performance-oriented responses: ICC = .91; learning-oriented responses: ICC = .90).")
+data_icc <- merge(coded_response_1_double, coded_response_2_double, mergeby="prolific_id")
+
+head(data_icc)
+
+data_icc_por <- data_icc |>
+  select("coded_por_1", "coded_por_2")
+
+data_icc_lor <- data_icc |>
+  select("coded_lor_1", "coded_lor_2")
+
+icc_por <- ICC(data_icc_por) #performance oriented responses
+icc_lor <- ICC(data_icc_lor) #learning oriented responses
+
+icc_por
+icc_lor
+
+##### Survey Measures (Study Result: Failure Mindset (Cronbach’s α = .88); Perception of their Children's Competence Survey (α = .79))
+
+###### failure
+data_raw_f <- qualtrics_data |>
+  select(c("failure_1", "failure_2", "failure_3", "failure_4", "failure_5", "failure_6"))
+
+head(data_raw_f)
+
+alpha_f <- psych::alpha(data_raw_f)
+alpha_f
+
+###### competence
+data_raw_c <- qualtrics_data |>
+  select(c("competence_1", "competence_2", "competence_3", "competence_4"))
+
+head(data_raw_c)
+
+alpha_c <- psych::alpha(data_raw_c)
+alpha_c
+
+#### Covariates (Study Result: "There were no effects of child’s age, gender, or socioeconomic status on any of the key variables, so these demographics were not considered in further analyses.")
+
+##### Child's Age
+# summary(lm(data_long$dem_childage ~ data_long$failure))
+# similar code here for other measures
+
+##### Sex
+# summary(lm(data_long$dem_sex ~ data_long$failure))
+# similar code here for other measures
+
+##### Education (SES)
+# summary(lm(data_long$dem_education ~ data_long$failure))
+# similar code here for other measures
+```
+
+#### Manipulation Check
+##### Was the parents' agreement with each of the intended mindsets above the midpoint?
+```{r}
+#### Manipulation Check (Study Result: "One-sample t tests comparing the mean in each priming condition with the scale’s midpoint (3.5) showed that participants’ agreement with the intended mind-set was above the midpoint in both the failure-is-debilitating condition (M = 4.41, SD  = 1.07), t(56) = 6.45, p < .001, and the failure-is-enhancing condition (M = 5.14, SD = 0.829), t(74) = 17.11, p < .001. Indeed, the manipulation seemed to shift parents’ mind-sets, t(124) = 2.53, p = 0.013: Parents in the failure-is-enhancing condition reported more of a failure-is-enhancing mind-set than did parents in the failure-is-debilitating condition.")
+
+##### Compare mean in each priming condition with midpoint
+
+###### get relevant manipulation survey data and compute composite
+data_manip_1 <- data_long |>
+  filter(measure == "biased_fid" | measure == "biased_fie") |>
+  filter(!is.na(value_w_rs)) |> 
+  group_by(prolific_id, measure) |>
+  summarise(composite = mean(value_w_rs))
+
+head(data_manip_1)
+
+###### make a dataframe for the FID manipulation survey and FIE manipulation survey
+data_manip_1_fid <- data_manip_1 |> 
+  filter(measure == "biased_fid")
+data_manip_1_fie <- data_manip_1 |>
+  filter(measure == "biased_fie")
+
+###### Was the parents' agreement with each of the intended mindsets above the midpoint?
+t.test(data_manip_1_fid$composite, mu = 3.5, alternative = "two.sided")
+t.test(data_manip_1_fie$composite, mu = 3.5, alternative = "two.sided")
+
+###### compute mean 
+data_manip_1_fig <- data_manip_1 |>
+  group_by(measure) |>
+  summarise(mean = mean(composite, na.rm = TRUE)) |>
+  add_row(measure = "mid_point", mean = 3.5)
+
+head(data_manip_1_fig)
+
+####### generate figure for failure-is-debilitating survey
+data_manip_1_fid_fig <- data_manip_1_fig |>
+  filter(measure != "biased_fie")
+fig_manip_1_fid <- ggplot(data_manip_1_fid_fig, aes(x=measure, y=mean)) +
+  geom_bar(position="dodge", stat="identity") + 
+  ylab("Composite Score of Failure-is-Debilitating Biased Survey") +
+  scale_x_discrete("",
+                   labels=c("biased_fid" = "Failure-is-Debilitating Condition", 
+                            "mid_point" = "Mid-Point Comparison"))
+fig_manip_1_fid
+
+####### generate figure for failure-is-enhancing survey
+data_manip_1_fie_fig <- data_manip_1_fig |>
+  filter(measure != "biased_fid")
+fig_manip_1_fie <- ggplot(data_manip_1_fie_fig, aes(x=measure, y=mean)) +
+  geom_bar(position="dodge", stat="identity") + 
+  ylab("Composite Score of Failure-is-Enhancing Biased Survey") +
+  scale_x_discrete("",
+                   labels=c("biased_fie" = "Failure-is-Enhancing Condition", 
+                            "mid_point" = "Mid-Point Comparison"))
+fig_manip_1_fie
+```
+
+##### Did the parents in the failure-is-debilitating condition report more of a failure-is-debilitating mindset than the parents in the failure-is-enhancing condition?
+```{r}
+
+##### Main Manipulation check
+
+###### get relevant manipulation survey data and compute composite
+data_manip_2 <- data_long |>
+  filter(measure == "failure") |>
+  filter(!is.na(value_w_rs)) |>
+  group_by(prolific_id, condition) |>
+  summarise(composite_f = mean(value_w_rs))
+
+head(data_manip_2)
+
+###### make a dataframe for the FID and FIE conditions
+data_manip_2_fid <- data_manip_2 |>
+  filter(condition == "debilitating")
+data_manip_2_fie <- data_manip_2 |>
+  filter(condition == "enhancing")
+
+###### Did the parents in the failure-is-debilitating condition report more of a failure-is-debilitating mindset than the parents in the failure-is-enhancing condition?
+t.test(data_manip_2_fid$composite_f, data_manip_2_fie$composite_f, alternative = "two.sided", var.equal = FALSE)
+
+###### compute relevant information to generate figure        
+data_manip_2_fig <- data_manip_2 |>
+  group_by(condition) |>
+  summarise(
+    count = n(),
+    mean_f = mean(composite_f, na.rm = TRUE),
+    sd_f = sd(composite_f, na.rm = TRUE), 
+    sem_f = sd_f / sqrt(count)
+  )
+
+head(data_manip_2_fig)
+
+###### generate figure 
+fig_manip_2 <- ggplot(data_manip_2_fig, aes(x=condition, y=mean_f)) +
+  geom_bar(position="dodge", stat="identity") + 
+  geom_errorbar(aes(ymin=mean_f-sem_f,
+                    ymax=mean_f+sem_f),
+                width=0.1,
+                position=position_dodge(0.9)) +
+  ylab("Failure Mindset (Failure-Is-Debilitating)") +
+  scale_x_discrete("Condition",
+                   labels=c("debilitating" = "Failure-is-Debilitating Condition", 
+                            "enhancing" = "Failure-is-Enhancing Condition"))
+fig_manip_2
+```
 
 ## Discussion
 
