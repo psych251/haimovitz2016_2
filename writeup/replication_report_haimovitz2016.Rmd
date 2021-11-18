@@ -44,7 +44,7 @@ This project aligned with my broader interests in reading mindset interventions.
 Given the class budget and feasibility in coding all the responses within the duration of the quarter-long class, this replication project aimed to achieve 80% power.
 
 ### Planned Sample
-120 parents were recruited to achieve 80% power and to account for participants whose data may not be usable. Parents were recruited through a crowdsourcing platform called Prolific. The participant pool on Prolific was filtered by parental status to specifically reach parents.
+120 parents (60 mothers and 60 fathers) were recruited to achieve 80% power and to account for participants whose data may not be usable. Parents were recruited through a crowdsourcing platform called Prolific. The participant pool on Prolific was filtered by parental status to specifically reach parents.
 
 In the original study, 310 adults from a crowdsourcing platform called Amazon Mechanical Turk completed an initial survey asking whether they were a parent. Out of these adults, 132 of them reported to be a parent and were chosen to participate in the study. The sample also had the following demographics: 
 
@@ -61,17 +61,17 @@ The replication study followed the materials and procedures outlined in the orig
 
 >We then asked participants to read and vividly imagine a scenario in which their child came home from school with a failing grade on a math quiz, as in Study 2. They then wrote what they would do, think, and feel in response. Finally, participants reported on their failure mind-sets (α = .82), using the same items as in Study 1, as part of a survey that included a few other items."
 
-All survey items outlined in the supplementary ["Materials and Methods" document](https://github.com/psych251/haimovitz2016_2/blob/main/original_paper/haimovitz2016_materials_measures.pdf) were used. 
+All survey items outlined in the supplementary ["Materials and Measures" document](https://github.com/psych251/haimovitz2016_2/blob/main/original_paper/haimovitz2016_materials_measures.pdf) were used. 
 
 From reading the original article and supplementary document, it was not clear whether the middle points on the Likert scale were labelled. Based on similar studies examining intelligence mindsets, I decided to label the middle points with "mostly dis/agree" and "slightly dis/agree." It was also unclear what "other items" were included in the final survey asking participants to report on their failure mindsets. These "other items" were not needed to replicate the main results, so they were omitted from this replication study. As I was also not sure where to collect demographic data (i.e., sex, race, education level, child's age), I decided to collect this information as part of the final survey at the very end of the study.
 
-Furthermore, I decided to include a funnel debrief at the end to assess whether the effects I observed were due to priming rather than explicit consistency biases and parents' prior knowledge of mindset research. These questions were not a part of the original study. 
+Furthermore, I decided to include a funnel debrief at the end to assess whether the effects I observed were due to priming rather than parents' prior knowledge of mindset research. These questions were not a part of the original study. 
 
 Here is a link to the survey that was used to conduct the replication study: 
 https://stanforduniversity.qualtrics.com/jfe/form/SV_9yLXExjnUOE8XzM
 
 #### Data Processing/Coding
-The following procedures from the original article outlined how the open-ended responses were coded. These procedures, in addition to guidelines outlined in the supplementary ["Materials and Methods" document](https://github.com/psych251/haimovitz2016_2/blob/main/original_paper/haimovitz2016_materials_measures.pdf) were carefully followed except for a few exceptions explained below. 
+The following procedures from the original article outlined how the open-ended responses were coded. These procedures, in addition to guidelines outlined in the supplementary ["Materials and Measures" document](https://github.com/psych251/haimovitz2016_2/blob/main/original_paper/haimovitz2016_materials_measures.pdf) were carefully followed except for a few exceptions explained below. 
 
 > "Two raters, blind to condition, coded the open-ended responses. The first author developed a coding scheme on the basis of an initial reading of the responses and then made clarifying revisions on the basis of feedback from the two raters.
 
@@ -81,7 +81,7 @@ The following procedures from the original article outlined how the open-ended r
 
 > Scores for performance-oriented and learning-oriented responses were each created by summing all instances of their respective subcategories. Two coders rated 20 responses (15%) to assess reliability."
 
-As there was already a coding scheme developed by the original authors, I did not create my own coding scheme. Rather, I carefully reviewed the coding scheme outlined in the supplementary document to code the responses. I considered recruiting an undergraduate RA or another PSYCH 251 student to serve as the second rater, but in the end, I decided to code all of the responses on my own. I came to this decision when I noticed it takes a while to get used to the coding scheme outlined by the authors. Given that the project needed to be completed in a quarter, it didn't seem feasible to recruit another student and have them reliably code the responses in this short time frame. With the support of the teaching team that helped me scramble the responses, I was able to ensure that I remained blind to condition.
+As there was already a coding scheme developed by the original authors, I did not create my own coding scheme. Rather, I carefully reviewed the coding scheme outlined in the supplementary document to code the responses. I considered recruiting an undergraduate RA or another PSYCH 251 student to serve as the second rater, but in the end, I decided to code all of the responses on my own. I came to this decision during the pilot study, when I noticed it takes a while to get used to the coding scheme outlined by the authors. Given that the project needed to be completed in a quarter, it didn't seem feasible to recruit another student and have them reliably code the responses in this short time frame. By scrambling the responses before downloading and viewing the open-ended responses for coding, I was able to ensure that I remained blind to condition.
 
 ### Confirmatory Analysis Plan
 
@@ -94,7 +94,7 @@ The original paper did not mention whether participants were excluded, but in th
 
 >"Parents who were induced to hold a failure-is-debilitating mind-set were more likely to react with concerns about their child’s performance and lack of ability, t(131) = 3.246, p < .001, ηp2 = .075 ... compared with those who were induced to hold a failure-is-enhancing mind-set."
 
-This finding was chosen as the main analysis of interest, as the purpose of Study 4 was to examine whether there was a causal effect of parents' failure mindset on their reaction to a scenario in which their child hypothetically came home with a failing grade. In the original study, two t tests were conducted to compare both performance-oriented responses and learning-oriented responses between the two conditions. The difference observed in performance-oriented responses had a larger effect size and was therefore chosen as the main, confirmatory analysis of interest. As an exploratory analysis, I aimed to replicate the difference observed in learning-oriented responses (i.e., "Parents who were induced to hold a failure-is-debilitating mind-set were ... less likely to react with support for their child’s learning and mastery, t(131) = −2.04, p = .043, ηp2 = .031, compared with those who were induced to hold a failure-is-enhancing mind-set (see Fig. 2)."
+This finding was chosen as the main analysis of interest, as the purpose of Experiment 4 was to examine whether there was a causal effect of parents' failure mindset on their reaction to a scenario in which their child hypothetically came home with a failing grade. In the original study, two t tests were conducted to compare both performance-oriented responses and learning-oriented responses between the two conditions. The difference observed in performance-oriented responses had a larger effect size and was therefore chosen as the main, confirmatory analysis of interest. As an exploratory analysis, I aimed to replicate the difference observed in learning-oriented responses (i.e., "Parents who were induced to hold a failure-is-debilitating mind-set were ... less likely to react with support for their child’s learning and mastery, t(131) = −2.04, p = .043, ηp2 = .031, compared with those who were induced to hold a failure-is-enhancing mind-set (see Fig. 2)."
 
 ### Exploratory Analysis Plan
 
@@ -113,31 +113,31 @@ Composite scores for failure mindsets and the biased questionnaires were created
 * **Biased Questionnaires**: "The responses were averaged to form a composite score, such that higher scores on the failure-is-debilitating biased questionnaire reflected a more debilitating view of failure and higher scores on the failure-is-enhancing biased questionnaire reflected a more enhancing view of failure."
 
 #### Secondary Analysis of Interest: Learning-Oriented Responses
-The key analysis of interest compared performance-oriented responses between the two conditions. This secondary analysis of interest compared the learning-oriented responses using the same, unpaired, two-tailed t test. 
+The key analysis of interest (confirmatory analysis) compared performance-oriented responses between the two conditions. This secondary analysis of interest compared the learning-oriented responses using the same, unpaired, two-tailed t test. 
 
 #### Funnel Debrief
-Apart from any of the analyses reported in the original study, I also explored whether parents' knowledge of mindset research and their expectations were associated with their learning-oriented and performance-oriented responses.
+Apart from any of the analyses reported in the original study, I also explored whether parents' knowledge of mindset research was associated with their learning-oriented and performance-oriented responses.
 
 ### Differences from Original Study
 I attempted as faithful a replication as possible, but there were some differences between the current replication study and the original study. 
 
 * **Crowdsourcing Platform**: The original study was conducted on Amazon Mechanical Turk, but the current project used Prolific. Both Amazon Mechanical Turk and Prolific are crowdsourcing platforms, so the study procedures were fairly similar. Prolific seems to provide higher data quality, so the results in this replication project may show higher internal consistency for survey measures and better overall data quality.
 
-* **Procedures**: Some parts of the procedures in the original article were unclear, specifically the labels of the middle points on the Likert scale, as well as the items in the final survey. It is common to have "mostly dis/agree" and "slightly dis/agree" as labels in such surveys, so this potential difference should not compromise the results. Adding demographic questions at the very end of the final survey should not change the claims in the original article as well. Even in the unlikely scenario that demographic questions made parents think in a certain way, it was possible to avoid having these questions affect the results by including the questions at the very end of the study and disabling going back to previous questions. Furthermore, a funnel debrief was added at the end to rule out the possibility that explicit, consistent biases and prior knowledge of mindset research were driving observed effects. Finally, only one rater coded the responses, rather than two raters. 
+* **Procedures**: Some parts of the procedures in the original article were unclear, specifically the labels of the middle points on the Likert scale, as well as the items in the final survey. It is common to have "mostly dis/agree" and "slightly dis/agree" as labels in such surveys, so this potential difference should not compromise the results. Adding demographic questions at the very end of the final survey should not change the claims in the original article as well. Even if the demographic questions altered parents' thoughts, it was possible to avoid having these questions affect the results by including the questions at the very end of the study and disabling going back to previous questions. Furthermore, a funnel debrief was added at the end to rule out the possibility that prior knowledge of mindset research was driving observed effects. Finally, only one rater coded the responses, rather than two raters. 
 
 * **Coding Scheme**: In the original study, the coding scheme was developed by reading through the open-ended responses and developing a coding scheme based on those responses. In this project, a new coding scheme was not made; rather, the original coding scheme was adopted. Creating a new coding scheme based on the responses collected in this replication study may have fundamentally changed the open-ended response measure. As the original study included a fairly large sample size and was likely to have represented a variety of responses, I anticipated that the coding scheme created by the authors would work well for this replication study as well.
 
-Overall, the differences between the original study and replication study did not seem to be significant enough to cause differences in the results.
+Overall, the differences between the original study and replication study did not seem to be significant enough to cause differences in the results. I was able to contact the first author and confirm that my version of the survey was similar to that of the original study.
 
-### Methods Addendum (Post Data Collection)
+<!-- ### Methods Addendum (Post Data Collection) -->
 
-You can comment this section out prior to final report with data collection.
+<!-- You can comment this section out prior to final report with data collection. -->
 
-#### Actual Sample
-  Sample size, demographics, data exclusions based on rules spelled out in analysis plan
+<!-- #### Actual Sample -->
+<!--   Sample size, demographics, data exclusions based on rules spelled out in analysis plan -->
 
-#### Differences from pre-data collection methods plan
-  Any differences from what was described as the original plan, or “none”.
+<!-- #### Differences from pre-data collection methods plan -->
+<!--   Any differences from what was described as the original plan, or “none”. -->
 
 
 ## Results
@@ -145,48 +145,64 @@ You can comment this section out prior to final report with data collection.
 ### Data preparation
 
 ```{r message=FALSE}
-### Data Preparation
+# Data Preparation
 
-#### Clean Workspace
+## Clean Workspace
 rm(list=ls())
 
-#### Load Relevant Libraries and Functions
+## Load Relevant Libraries and Functions
 library(rmarkdown)
 library(tidyverse)
 library(knitr)
 library(qualtRics)
-library(psych)      # for reverse coding and ICC
-library(ggsignif)   #to add significance bars
+library(psych)      # for reverse coding
+library(ggsignif)   # to add significance bars
 
-#### Load Data
+## Load Pilot Data
 
-##### authenticate API
+### authenticate API
 #qualtrics_api_credentials(api_key = "XXX", base_url="stanforduniversity.ca1.qualtrics.com", install = TRUE)
 
-##### get Qualtrics survey data, load, and save
+### get Qualtrics survey data
 qualtrics_data <- fetch_survey(surveyID = "SV_9yLXExjnUOE8XzM", force_request = TRUE)
+
+### filter out all pilot participants (commented out for now but will include once I run study)
+#qualtrics_data <- qualtrics_data |>
+#  filter(StartDate >= as.Date("2021-11-18"))
+
+### create a new file to scramble open-ended responses to blind myself to condition before coding
+data_response_scrambled <- qualtrics_data |>
+  select("prolific_id", "oer_1", "oer_2", "oer_3") |>
+  arrange(prolific_id)
+
+## save both csv files
+
+### scrambled, open-ended responses
+write.csv(data_response_scrambled, "../raw_data/data_response_scrambled.csv")
+
+### rest of the Qualtrics data, WITHOUT the open-ended responses
+qualtrics_data <- qualtrics_data |>
+  select(-c("oer_1", "oer_2", "oer_3"))
 write.csv(qualtrics_data, "../raw_data/qualtrics_data.csv")
+```
 
-##### load coded_responses
-coded_response <- read.csv("../raw_data/coded_response.csv", header = TRUE, sep = ",")
+```{r message=FALSE}
+## load coded responses
+coded_response <- read.csv("../coded_data/data_response_scrambled_coded.csv", header = TRUE, sep = ",")
 
-#### data exclusion / filtering
-qualtrics_data <- qualtrics_data |>
-  filter(prolific_id != "test_4", prolific_id != "test_5", prolific_id != "test_8")
-
+## data exclusion / filtering: filter out all participants whose open-ended response scores was NA
 coded_response <- coded_response |>
-  filter(prolific_id != "test_4", prolific_id != "test_5", prolific_id != "test_8")
+  filter(!is.na(coded_por) | !is.na(coded_lor))
 
-#### prepare Qualtrics data
-
+## prepare Qualtrics data (take out irrelvant variables and label each participant with condition)
 qualtrics_data <- qualtrics_data |>
-  #take out raw open-ended responses and variables that contain DO
-  select(-c("oer_1", "oer_2", "oer_3"), -contains("DO")) |>
+  #take out variables that contain DO
+  select(-contains("DO")) |>
   #label each participant with the correct condition
   mutate(condition = ifelse(!is.na(fid_manip_1), "debilitating", 
                             ifelse(!is.na(fie_manip_1), "enhancing", NA)))
 
-#### merge data 
+## merge data 
 metadata <- merge(qualtrics_data, coded_response, by = "prolific_id")
 ```
 
@@ -198,16 +214,16 @@ metadata <- merge(qualtrics_data, coded_response, by = "prolific_id")
 
 > “Parents who were induced to hold a failure-is-debilitating mind-set were more likely to react with concerns about their child’s performance and lack of ability, t(131) = 3.246, p < .001, ηp2 = .075 … compared with those who were induced to hold a failure-is-enhancing mind-set.”
 
-#### Unpaired, Two-Tailed T Test
+#### Unpaired, Two-Tailed T-Test
 
 ```{r}
-##### make a dataframe for the FID and FIE conditions to conduct t-test
+# Make a dataframe for the FID and FIE conditions to conduct t-test
 data_coded_response_fie <- metadata |>
   filter(condition == "enhancing")
 data_coded_response_fid <- metadata |>
   filter(condition == "debilitating")
 
-##### Are the number of performance-oriented responses different for the two groups? 
+# T-Test 
 t_test_por <- t.test(data_coded_response_fie$coded_por, data_coded_response_fid$coded_por, alternative = "two.sided", var.equal = FALSE)
 
 t_test_por
@@ -218,7 +234,7 @@ t_test_por
 ##### Replication Project Figure
 
 ```{r}
-##### compute relevant information to generate figure   
+# compute relevant information to generate figure   
 data_coded_response_por_fig <- metadata |>
   group_by(condition) |>
   summarise(
@@ -230,7 +246,7 @@ data_coded_response_por_fig <- metadata |>
 
 head(data_coded_response_por_fig)
 
-##### generate figure
+# generate figure
 fig_condition_por <- ggplot(data_coded_response_por_fig, aes(x=condition, y=mean_por)) +
   geom_bar(position="dodge", stat="identity") + 
   geom_errorbar(aes(ymin=mean_por-sem_por,
@@ -246,8 +262,7 @@ fig_condition_por <- ggplot(data_coded_response_por_fig, aes(x=condition, y=mean
     y_position = c(1.75), 
     xmin = c(1.1), xmax = c(1.9),
     annotation = c(paste("p=", round(t_test_por$p.value, digits = 3))), tip_length = 0.0,
-    textsize = 3.5
-  ) + 
+    textsize = 3.5) + 
   theme_classic()
 
 fig_condition_por
@@ -268,7 +283,7 @@ The main analysis of interest compared the performance-oriented responses shown 
 kable(table(metadata$dem_childage), col.names = c("Child's Age", "N"))
 ```
 
-##### Parental Education Level
+##### Parental Education
 ```{r}
 kable(table(metadata$dem_education), col.names = c("Education Level", "N"))
 ```
@@ -348,9 +363,9 @@ fig_age_covariate
 > “One-sample t tests comparing the mean in each priming condition with the scale’s midpoint (3.5) showed that participants’ agreement with the intended mind-set was above the midpoint in both the failure-is-debilitating condition (M = 4.41, SD  = 1.07), t(56) = 6.45, p < .001, and the failure-is-enhancing condition (M = 5.14, SD = 0.829), t(74) = 17.11, p < .001.”
 
 ```{r}
-##### Prepare Data
+# Prepare Data
 
-###### create dataframe with names of measures and reverse scores
+## create dataframe with names of measures and reverse scores
 data_long <- metadata |>
   #format into tidy data
   pivot_longer(competence_1:failure_6, #1st item in competence survey to last item in failure survey 
@@ -370,9 +385,9 @@ data_long <- metadata |>
 ```
 
 ```{r}
-##### Compare mean in each priming condition with midpoint
+# Compare mean in each priming condition with midpoint
 
-###### get relevant manipulation survey data and compute composite
+## get relevant manipulation survey data and compute composite
 data_manip_1 <- data_long |>
   filter(measure == "biased_fid" | measure == "biased_fie") |>
   filter(!is.na(value_w_rs)) |> 
@@ -381,7 +396,7 @@ data_manip_1 <- data_long |>
 
 head(data_manip_1)
 
-####### compute mean 
+## compute mean 
 data_manip_1_fig <- data_manip_1 |>
   group_by(measure) |>
   summarise(mean = mean(composite, na.rm = TRUE),
@@ -395,27 +410,29 @@ head(data_manip_1_fig)
 ##### Was the intended mind-set above the midpoint in the failure-is-debilitating condition?
 
 ```{r}
-####### make a dataframe for the FID manipulation survey
+# make a dataframe for the FID manipulation survey
 data_manip_1_fid <- data_manip_1 |> 
   filter(measure == "biased_fid")
-####### Was the parents' agreement with each of the intended mindsets above the midpoint?
+
+# Was the parents' agreement with each of the intended mindsets above the midpoint?
 t.test(data_manip_1_fid$composite, mu = 3.5, alternative = "two.sided")
 ```
 
 ##### Was the intended mind-set above the midpoint in the failure-is-enhancing condition?
 
 ```{r}
-####### make a dataframe for the FIE manipulation survey
+# make a dataframe for the FIE manipulation survey
 data_manip_1_fie <- data_manip_1 |>
   filter(measure == "biased_fie")
-####### Was the parents' agreement with each of the intended mindsets above the midpoint?
+
+# Was the parents' agreement with each of the intended mindsets above the midpoint?
 t.test(data_manip_1_fie$composite, mu = 3.5, alternative = "two.sided")
 ```
 
 ##### Figure
 
 ```{r}
-####### generate figure for failure-is-debilitating and failure-is-enhancing survey
+# generate figure for failure-is-debilitating and failure-is-enhancing survey
 fig_manip_1 <- ggplot(data_manip_1_fig, aes(x=measure, y=mean)) +
   geom_bar(position="dodge", stat="identity", width=0.75) + 
   geom_errorbar(aes(ymin=mean-sem,
@@ -445,7 +462,7 @@ fig_manip_1
 >  "Indeed, the manipulation seemed to shift parents’ mind-sets, t(124) = 2.53, p = 0.013: Parents in the failure-is-enhancing condition reported more of a failure-is-enhancing mind-set than did parents in the failure-is-debilitating condition."
 
 ```{r}
-####### get relevant manipulation survey data and compute composite
+# get relevant manipulation survey data and compute composite
 data_manip_2 <- data_long |>
   filter(measure == "failure") |>
   filter(!is.na(value_w_rs)) |>
@@ -458,13 +475,13 @@ head(data_manip_2)
 ##### T-Test
 
 ```{r}
-####### make a dataframe for the FID and FIE conditions
+# make a dataframe for the FID and FIE conditions
 data_manip_2_fid <- data_manip_2 |>
   filter(condition == "debilitating")
 data_manip_2_fie <- data_manip_2 |>
   filter(condition == "enhancing")
 
-####### T-Test
+# T-Test
 data_manip_2_ttest <- t.test(data_manip_2_fid$composite_f, data_manip_2_fie$composite_f, alternative = "two.sided", var.equal = FALSE)
 data_manip_2_ttest 
 ```
@@ -472,7 +489,7 @@ data_manip_2_ttest
 ##### Figure
 
 ```{r}
-###### compute relevant information to generate figure        
+# compute relevant information to generate figure        
 data_manip_2_fig <- data_manip_2 |>
   group_by(condition) |>
   summarise(
@@ -484,7 +501,7 @@ data_manip_2_fig <- data_manip_2 |>
 
 head(data_manip_2_fig)
 
-###### generate figure 
+# generate figure 
 fig_manip_2 <- ggplot(data_manip_2_fig, aes(x=condition, y=mean_f)) +
   geom_bar(position="dodge", stat="identity") + 
   geom_errorbar(aes(ymin=mean_f-sem_f,
@@ -519,10 +536,10 @@ Were parents who hold a failure-is-debilitating mind-set less likely to react wi
 
 > "Parents who were induced to hold a failure-is-debilitating mind-set were ... less likely to react with support for their child’s learning and mastery, t(131) = −2.04, p = .043, ηp2 = .031, compared with those who were induced to hold a failure-is-enhancing mind-set (see Fig. 2)."
 
-##### Unpaired, Two-tailed T-Test
+##### Unpaired, Two-Tailed T-Test
 
 ```{r}
-###### Are the number of learning-oriented responses different for the two groups?
+# Are the number of learning-oriented responses different for the two groups?
 t_test_lor <- t.test(data_coded_response_fie$coded_lor, data_coded_response_fid$coded_lor, alternative = "two.sided", var.equal = FALSE)
 t_test_lor
 ```
@@ -530,7 +547,7 @@ t_test_lor
 ##### Replication Study Figure
 
 ```{r}
-##### compute relevant information to generate figure   
+# compute relevant information to generate figure   
 data_coded_response_lor_fig <- metadata |>
   group_by(condition) |>
   summarise(
@@ -540,7 +557,7 @@ data_coded_response_lor_fig <- metadata |>
     sem_lor = sd_lor / sqrt(count)
   )
 
-###### generate figure
+# generate figure
 fig_condition_lor <- ggplot(data_coded_response_lor_fig, aes(x=condition, y=mean_lor)) +
   geom_bar(position="dodge", stat="identity") + 
   geom_errorbar(aes(ymin=mean_lor-sem_lor,
@@ -556,8 +573,7 @@ fig_condition_lor <- ggplot(data_coded_response_lor_fig, aes(x=condition, y=mean
     y_position = c(3.5), 
     xmin = c(1.1), xmax = c(1.9),
     annotation = c(paste("p=", round(t_test_lor$p.value, digits = 3))), tip_length = 0.0,
-    textsize = 3.5
-  ) + 
+    textsize = 3.5) + 
   theme_classic()
 
 fig_condition_lor
@@ -566,9 +582,9 @@ fig_condition_lor
 ##### Side-By-Side Comparison with Fig 2 in Haimovitz & Dweck (2016)
 
 ```{r}
-##### Create figure of two pairs of bar graphs that parallels Fig 2 in the original paper
+# Create figure of two pairs of bar graphs that parallels Fig 2 in the original paper
 
-###### compute relevant information to generate figure
+## compute relevant information to generate figure
 data_coded_response_combined_fig <- metadata |>
   pivot_longer(coded_por:coded_lor,
                names_to = "response_type",
@@ -580,7 +596,7 @@ data_coded_response_combined_fig <- metadata |>
             sem = sd / sqrt(count),)
 head(data_coded_response_combined_fig)
 
-###### generate figure
+## generate figure
 fig_coded_response <- ggplot(data_coded_response_combined_fig, aes(x=response_type, y=mean, group=condition, fill=condition)) +
   geom_bar(position="dodge", stat="identity") + 
   geom_errorbar(aes(ymin=mean-sem,
@@ -614,12 +630,12 @@ fig_coded_response
 ![Fig 2 from Haimovitz & Dweck (2016).](../original_paper/haimovitz2016_fig2.png)
 
 
-## Discussion
+<!-- ## Discussion -->
 
-### Summary of Replication Attempt
+<!-- ### Summary of Replication Attempt -->
 
-Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.  
+<!-- Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.   -->
 
-### Commentary
+<!-- ### Commentary -->
 
-Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.
+<!-- Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long. -->
