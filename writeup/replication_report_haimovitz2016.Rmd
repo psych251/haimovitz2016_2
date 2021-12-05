@@ -94,7 +94,7 @@ The original paper did not mention whether participants were excluded, but in th
 
 >"Parents who were induced to hold a failure-is-debilitating mind-set were more likely to react with concerns about their child’s performance and lack of ability, t(131) = 3.246, p < .001, ηp2 = .075 ... compared with those who were induced to hold a failure-is-enhancing mind-set."
 
-This finding was chosen as the main analysis of interest, as the purpose of Experiment 4 was to examine whether there was a causal effect of parents' failure mindset on their reaction to a scenario in which their child hypothetically came home with a failing grade. In the original study, two t tests were conducted to compare both performance-oriented responses and learning-oriented responses between the two conditions. The difference observed in performance-oriented responses had a larger effect size and was therefore chosen as the main, confirmatory analysis of interest. As an exploratory analysis, I aimed to replicate the difference observed in learning-oriented responses (i.e., "Parents who were induced to hold a failure-is-debilitating mind-set were ... less likely to react with support for their child’s learning and mastery, t(131) = −2.04, p = .043, ηp2 = .031, compared with those who were induced to hold a failure-is-enhancing mind-set (see Fig. 2)."
+This finding was chosen as the main analysis of interest, as the purpose of Experiment 4 was to examine whether there was a causal effect of parents' failure mindset on their reaction to a scenario in which their child hypothetically came home with a failing grade. In the original study, two t tests were conducted to compare both performance-oriented responses and learning-oriented responses between the two conditions. The difference observed in performance-oriented responses had a larger effect size and was therefore chosen as the main, confirmatory analysis of interest. As an exploratory analysis, I aimed to replicate the difference observed in learning-oriented responses (i.e., "Parents who were induced to hold a failure-is-debilitating mind-set were ... less likely to react with support for their child’s learning and mastery, t(131) = −2.04, p = .043, ηp2 = .031, compared with those who were induced to hold a failure-is-enhancing mind-set (see Fig. 2).")
 
 ### Exploratory Analysis Plan
 
@@ -104,6 +104,9 @@ I explored the demographics of the replication sample, mainly child's age, paren
 #### Covariates
 The effects of child's age were tested on key variables, namely parents' scores on performance-oriented responses and learning-oriented responses.
 
+#### Secondary Analysis of Interest: Learning-Oriented Responses
+The key analysis of interest (confirmatory analysis) compared performance-oriented responses between the two conditions. This secondary analysis of interest compared the learning-oriented responses using the same, unpaired, two-tailed t test. 
+
 #### Manipulation Check
 One-sample t tests were used to compare "the mean in each priming condition with the scale's midpoint (3.5)." Furthermore, another t test was conducted to confirm that the "biased-questionnaire manipulation effectively changed parents’ self-reported failure mind-sets at the end of the survey."
 
@@ -111,9 +114,6 @@ Composite scores for failure mindsets and the biased questionnaires were created
 
 * **Failure Mindset Survey:** "We created a composite variable by reverse-scoring items that represented a failure-is-enhancing mind-set and then averaging responses to all the items; thus, higher numbers indicated a more debilitating view of failure."
 * **Biased Questionnaires**: "The responses were averaged to form a composite score, such that higher scores on the failure-is-debilitating biased questionnaire reflected a more debilitating view of failure and higher scores on the failure-is-enhancing biased questionnaire reflected a more enhancing view of failure."
-
-#### Secondary Analysis of Interest: Learning-Oriented Responses
-The key analysis of interest (confirmatory analysis) compared performance-oriented responses between the two conditions. This secondary analysis of interest compared the learning-oriented responses using the same, unpaired, two-tailed t test. 
 
 #### Funnel Debrief
 Apart from any of the analyses reported in the original study, I also explored whether parents' knowledge of mindset research was associated with their learning-oriented and performance-oriented responses.
@@ -129,16 +129,23 @@ I attempted as faithful a replication as possible, but there were some differenc
 
 Overall, the differences between the original study and replication study did not seem to be significant enough to cause differences in the results. I was able to contact the first author and confirm that my version of the survey was similar to that of the original study.
 
-<!-- ### Methods Addendum (Post Data Collection) -->
+### Methods Addendum (Post Data Collection)
 
-<!-- You can comment this section out prior to final report with data collection. -->
+#### Actual Sample
 
-<!-- #### Actual Sample -->
-<!--   Sample size, demographics, data exclusions based on rules spelled out in analysis plan -->
+120 participants (60 mothers and 60 fathers) were recruited via Prolific as planned. 119 of these participants completed the survey, and their responses were saved on Qualtrics. Out of these 119 participants, four participants' responses were excluded, as they were not possible to code due to the following reasons: 1) responses were written in another language (*N* = 1), 2) one of the open-ended responses was missing (*N* = 1), 3) the statements were impossible to interpret due to critical typos or lack of clarity in their response (*N* = 2). The final dataset consisted of responses from 115 participants. 59 of the participants were in the failure-is-debilitating condition and 56 were in the failure-is-enhancing condition.
 
-<!-- #### Differences from pre-data collection methods plan -->
-<!--   Any differences from what was described as the original plan, or “none”. -->
+The final dataset had the following demographic characteristics:
 
+* **Gender:** 49% identifying as woman or female; 50% identifying as man or male; 2% identifying as genderqueer, gender fluid, or non-binary (participants could have chosen more than one category)
+* **Education:** 1% had no degrees, 24% had a high school diploma, 55% had a college degree, 19% had a post-graduate degree, and 1% preferred not to answer. 
+* **Race/Ethnicity:** 4% Asian, 16% Black/African American, 17% Hispanic, Latino, or Spanish origin, 1% Native Hawaiian or Other Pacific Islander, 63% White, 3% filled in their own option, and 1% preferred not to answer (participants could have chosen more than one category)
+
+More demographic information can be found in the exploratory analysis below.
+
+#### Differences from pre-data collection methods plan
+
+There were no differences from the pre-data collection methods plan.
 
 ## Results
 
@@ -158,7 +165,7 @@ library(qualtRics)
 library(psych)      # for reverse coding
 library(ggsignif)   # to add significance bars
 
-## Load Pilot Data
+## Load Data
 
 ### authenticate API
 #qualtrics_api_credentials(api_key = "XXX", base_url="stanforduniversity.ca1.qualtrics.com", install = TRUE)
@@ -166,14 +173,16 @@ library(ggsignif)   # to add significance bars
 ### get Qualtrics survey data
 qualtrics_data <- fetch_survey(surveyID = "SV_9yLXExjnUOE8XzM", force_request = TRUE)
 
-### filter out all pilot participants (commented out for now but will include once I run study)
-#qualtrics_data <- qualtrics_data |>
-#  filter(StartDate >= as.Date("2021-11-18"))
+### filter out all pilot participants, scramble open-ended responses by prolific_id to blind myself to condition before coding, then re-assign prolific_id to remove prolific_id identifier
+qualtrics_data <- qualtrics_data |>
+  filter(StartDate >= as.Date("2021-11-18")) |>
+  arrange(prolific_id) |>
+  mutate(prolific_id = 1: length(prolific_id)) |>
+  select(-c("PROLIFIC_PID", "ResponseId"))
 
-### create a new file to scramble open-ended responses to blind myself to condition before coding
+### create a new file with open-ended responses to use for coding
 data_response_scrambled <- qualtrics_data |>
-  select("prolific_id", "oer_1", "oer_2", "oer_3") |>
-  arrange(prolific_id)
+  select("prolific_id", "oer_1", "oer_2", "oer_3")
 
 ## save both csv files
 
@@ -278,14 +287,45 @@ The main analysis of interest compared the performance-oriented responses shown 
 
 #### Demographics of Prolific Sample
 
-##### Child's Age
-```{r}
-kable(table(metadata$dem_childage), col.names = c("Child's Age", "N"))
-```
-
 ##### Parental Education
 ```{r}
+#create table
 kable(table(metadata$dem_education), col.names = c("Education Level", "N"))
+
+#create figure
+fig_education <- ggplot(metadata, aes(x=dem_education)) +
+  geom_bar() +
+  xlab("Parental Education") +
+  ylab("N") +
+  scale_y_continuous(breaks=seq(0,65,5)) +
+  theme_classic() 
+fig_education
+```
+
+###### Parental Education by Condition
+```{r}
+#create table
+education_condition_count <- metadata |>
+  select(dem_education, condition) |>
+  mutate(count = 1) |>
+  group_by(dem_education, condition) |>
+  summarise(N = sum(count)) |>
+  kable(col.names = c("Parental Education", "Condition", "N"))
+education_condition_count
+
+#create figure
+fig_education_condition <- ggplot(metadata, aes(x=dem_education, fill=condition)) +
+  geom_bar(position = position_dodge2(preserve = 'single')) +
+  xlab("Parental Education") +
+  ylab("N") +
+  scale_y_continuous(breaks=seq(0,35,5)) +
+  theme_classic() +
+  theme(legend.position="top") +
+  scale_fill_brewer("Condition",
+                    labels=c("Failure-Is-Debilitating Condition",
+                               "Failure-Is-Enhancing Condition"), 
+                    palette = "Dark2")
+fig_education_condition
 ```
 
 ##### Parents' Gender
@@ -293,17 +333,51 @@ kable(table(metadata$dem_education), col.names = c("Education Level", "N"))
 Each participant may have chosen more than one category. 
 
 ```{r}
+#create table
 data_gender <- metadata |>
-  select(dem_gender_1:dem_gender_8) |>
+  select(dem_gender_1:dem_gender_8, condition) |>
   pivot_longer(dem_gender_1:dem_gender_8, 
                names_to = "qualtrics_category",
                values_to = "gender") |>
   filter(!is.na(gender)) |> 
-  mutate(count = 1) |> 
+  mutate(count = 1) 
+data_gender |> 
   group_by(gender) |>
   summarise(N = sum(count)) |>
   kable(col.names = c("Gender", "N"))
-data_gender
+
+#create figure
+fig_gender <- ggplot(data_gender, aes(x=gender)) +
+  geom_bar() +
+  xlab("Gender") +
+  ylab("N") +
+  scale_y_continuous(breaks=seq(0,60,5)) +
+  theme_classic() 
+fig_gender
+```
+
+###### Gender by Condition
+```{r}
+#create table
+data_gender |> 
+  group_by(gender, condition) |>
+  summarise(N = sum(count)) |>
+  kable(col.names = c("Gender", "Condition", "N"))
+
+#create figure
+fig_gender_condition <- ggplot(data_gender, aes(x=gender, fill=condition)) +
+  geom_bar(position="dodge") +
+  xlab("Gender") +
+  ylab("N") +
+  scale_y_continuous(breaks=seq(0,31,5)) +
+  theme_classic() +
+  theme(legend.position="top") +
+  scale_fill_brewer("Condition",
+                    labels=c("Failure-Is-Debilitating Condition",
+                               "Failure-Is-Enhancing Condition"), 
+                    palette = "Dark2")
+
+fig_gender_condition
 ```
 
 ##### Parents' Race and Ethnicity
@@ -311,17 +385,114 @@ data_gender
 Each participant may have chosen more than one category. 
 
 ```{r}
+#create table
 data_race_ethnicity <- metadata |>
-  select(dem_raceethnicity_1:dem_raceethnicity_8) |>
+  select(dem_raceethnicity_1:dem_raceethnicity_8, condition) |>
   pivot_longer(dem_raceethnicity_1:dem_raceethnicity_8, 
                names_to = "qualtrics_category",
                values_to = "race_ethnicity") |>
   filter(!is.na(race_ethnicity)) |> 
-  mutate(count = 1) |> 
+  mutate(count = 1)
+data_race_ethnicity |> 
   group_by(race_ethnicity) |>
   summarise(N = sum(count)) |>
   kable(col.names = c("Race/Ethnicity", "N"))
-data_race_ethnicity
+
+#create figure
+fig_race_ethnicity <- ggplot(data_race_ethnicity, aes(x=factor(race_ethnicity, 
+                                                               level = c("Asian",
+                                                                         "Black or African American", 
+                                                                         "Hispanic, Latino, or Spanish origin",
+                                                                         "Native Hawaiian or Other Pacific Islander",
+                                                                         "White",
+                                                                         "Fill-In Option:",
+                                                                         "Prefer not to answer")))) +
+  geom_bar() +
+  xlab("Race/Ethnicity") +
+  ylab("N") +
+  scale_y_continuous(breaks=seq(0,75,5)) +
+  scale_x_discrete(guide = guide_axis(angle = 35)) +
+  theme_classic()
+  
+fig_race_ethnicity
+```
+
+###### Race/Ethnicity by Condition
+```{r}
+#create table
+data_race_ethnicity |> 
+  group_by(race_ethnicity, condition) |>
+  summarise(N = sum(count)) |>
+  kable(col.names = c("Race/Ethnicity", "Condition", "N"))
+
+#create figure
+fig_race_ethnicity_condition <- ggplot(data_race_ethnicity, aes(x=factor(race_ethnicity,
+                                                                         level = c("Asian",
+                                                                                   "Black or African American", 
+                                                                                   "Hispanic, Latino, or Spanish origin",
+                                                                                   "Native Hawaiian or Other Pacific Islander",
+                                                                                   "White",
+                                                                                   "Fill-In Option:",
+                                                                                   "Prefer not to answer")),
+                                                                fill=condition)) +
+  geom_bar(position = position_dodge(preserve = 'single')) +
+  xlab("Race/Ethnicity") +
+  ylab("N") +
+  scale_y_continuous(breaks=seq(0,35,5)) +
+  scale_x_discrete(guide = guide_axis(angle = 35)) +
+  theme_classic() +
+  theme(legend.position="top") +
+  scale_fill_brewer("Condition",
+                    labels=c("Failure-Is-Debilitating Condition",
+                               "Failure-Is-Enhancing Condition"), 
+                    palette = "Dark2")
+fig_race_ethnicity_condition
+```
+
+##### Child's Age
+```{r}
+#create table
+kable(table(metadata$dem_childage), col.names = c("Child's Age", "N"))
+
+#create figure
+hist_age <- ggplot(metadata, aes(x=dem_childage)) +
+  geom_histogram(bins = 30, binwidth=0.5) +
+  xlab("Child's Age") +
+  scale_x_continuous(breaks=seq(0,35,1)) +
+  ylab("N") +
+  scale_y_continuous(breaks=seq(0,15,1)) +
+  theme_classic() 
+hist_age
+```
+
+###### Child's Age By Condition
+```{r}
+# compute relevant information to generate figure   
+data_fig_age_condition <- metadata |>
+  group_by(condition) |>
+  summarise(
+    count = n(),
+    mean_age = mean(dem_childage, na.rm = TRUE),
+    sd_age = sd(dem_childage, na.rm = TRUE), 
+    sem_age = sd_age / sqrt(count)
+  )
+data_fig_age_condition
+
+fig_age_condition <- ggplot(data_fig_age_condition, aes(x=condition, y=mean_age, color=condition)) +
+  geom_point(size=3) +
+  geom_errorbar(aes(ymin=mean_age-sem_age,
+                    ymax=mean_age+sem_age),
+                width=0.1, size=1.2) + 
+  geom_jitter(data=metadata, aes(x=condition, y=dem_childage), width = 0.1, height = 0, alpha=0.6) +
+  ylab("Child's Age") +
+  scale_y_continuous(breaks=seq(0,36,1)) +
+  scale_x_discrete("Condition",
+                   labels=c("debilitating" = "Failure-is-Debilitating", 
+                            "enhancing" = "Failure-is-Enhancing")) +
+  theme_classic() +
+  scale_color_brewer(palette = "Dark2") +
+  theme(legend.position = "none")
+fig_age_condition
 ```
 
 #### Covariates: Child's Age
@@ -337,24 +508,129 @@ summary(lm(metadata$dem_childage ~ metadata$coded_lor))
 ```
 
 ##### Figure 
-```{r fig.width=7, fig.height = 4} 
+```{r fig.width=10, fig.height = 4} 
 data_age_covariate <- metadata |>
   pivot_longer(coded_por:coded_lor,
                names_to = "code_type", 
                values_to = "response")
 
 fig_age_covariate <- ggplot(data = data_age_covariate, aes(x = dem_childage, y = response)) +
-  facet_wrap(~code_type, 
+  facet_wrap(~code_type,
              labeller = labeller(code_type = c("coded_lor" = "Learning-Oriented Responses",
                                                "coded_por" = "Performance-Oriented Responses"))) +
   geom_point() +
   geom_smooth(method = "lm") +
   xlab("Child's Age") +
   ylab("Number of Responses") +
-  scale_x_continuous(breaks=seq(0,20,1)) +
+  scale_x_continuous(breaks=seq(0,36,2)) +
   theme_bw()
 fig_age_covariate
 ```
+
+#### Secondary Analysis of Interest: Learning-Oriented Responses
+
+Were parents who hold a failure-is-debilitating mind-set less likely to react with support for their child’s learning and mastery?
+
+##### Original Study Result 
+
+> "Parents who were induced to hold a failure-is-debilitating mind-set were ... less likely to react with support for their child’s learning and mastery, t(131) = −2.04, p = .043, ηp2 = .031, compared with those who were induced to hold a failure-is-enhancing mind-set (see Fig. 2)."
+
+##### Unpaired, Two-Tailed T-Test
+
+```{r}
+# T-Test
+t_test_lor <- t.test(data_coded_response_fie$coded_lor, data_coded_response_fid$coded_lor, alternative = "two.sided", var.equal = FALSE)
+t_test_lor
+```
+
+##### Replication Project Figure
+
+```{r}
+# compute relevant information to generate figure   
+data_coded_response_lor_fig <- metadata |>
+  group_by(condition) |>
+  summarise(
+    count = n(),
+    mean_lor = mean(coded_lor, na.rm = TRUE),
+    sd_lor = sd(coded_lor, na.rm = TRUE), 
+    sem_lor = sd_lor / sqrt(count)
+  )
+
+# generate figure
+fig_condition_lor <- ggplot(data_coded_response_lor_fig, aes(x=condition, y=mean_lor)) +
+  geom_bar(position="dodge", stat="identity") + 
+  geom_errorbar(aes(ymin=mean_lor-sem_lor,
+                    ymax=mean_lor+sem_lor),
+                width=0.1,
+                position=position_dodge(0.9)) +
+  geom_jitter(data=metadata, aes(x=condition, y=coded_lor), width = 0.1, height = 0) +
+  ylab("Number of Learning-Oriented Responses") +
+  scale_x_discrete("Condition",
+                   labels=c("debilitating" = "Failure-is-Debilitating Condition", 
+                            "enhancing" = "Failure-is-Enhancing Condition")) +
+  scale_y_continuous(breaks=seq(0,6,1)) +
+  geom_signif(
+    y_position = c(3.5), 
+    xmin = c(1.1), xmax = c(1.9),
+    annotation = c(paste("p=", round(t_test_lor$p.value, digits = 3))), 
+    tip_length = 0.0,
+    textsize = 3.5) + 
+  theme_classic()
+
+fig_condition_lor
+```
+
+##### Side-By-Side Comparison with Fig 2 in Haimovitz & Dweck (2016)
+
+```{r}
+# Create figure of two pairs of bar graphs that parallels Fig 2 in the original paper
+
+## compute relevant information to generate figure
+data_coded_response_combined_fig <- metadata |>
+  pivot_longer(coded_por:coded_lor,
+               names_to = "response_type",
+               values_to = "num_response") |>
+  group_by(condition, response_type) |>
+  summarise(count = n(),
+            mean = mean(num_response, na.rm = TRUE),
+            sd = sd(num_response, na.rm = TRUE), 
+            sem = sd / sqrt(count),)
+head(data_coded_response_combined_fig)
+```
+```{r}
+## generate figure
+fig_coded_response <- ggplot(data_coded_response_combined_fig, aes(x=response_type, y=mean, group=condition, fill=condition)) +
+  geom_bar(position="dodge", stat="identity") + 
+  geom_errorbar(aes(ymin=mean-sem,
+                    ymax=mean+sem),
+                width=0.1,
+                position=position_dodge(0.9)) +
+  scale_x_discrete("Parental Responses to Child-Failure Scenario",
+                   limits=c("coded_por", "coded_lor"), #not working due to back-end bug
+                   labels=c("coded_lor" = "Learning-Oriented", 
+                            "coded_por" = "Performance-Oriented")) +
+  ylab("Number of Responses") +
+  scale_y_continuous(breaks=seq(0,3,0.5)) +
+  annotate("text", x = 1:2, y = 3.5:3.5, 
+           label = c(paste("p=", round(t_test_por$p.value, digits = 3)), 
+                     paste("p=", round(t_test_lor$p.value, digits = 3)))) +
+  geom_segment(aes(x = 0.8, y = 3.3, xend = 1.2, yend = 3.3)) +
+  geom_segment(aes(x = 1.8, y = 3.3, xend = 2.2, yend = 3.3)) +
+  theme_bw() +
+  theme(legend.position="top", 
+        legend.title = element_blank(),
+        panel.grid.major=element_blank(), 
+        panel.grid.minor=element_blank(),
+        panel.border=element_blank(),  
+        axis.line=element_line()) +
+  scale_fill_brewer(labels=c("Failure-Is-Debilitating Condition",
+                               "Failure-Is-Enhancing Condition"), 
+                    palette = "Dark2") 
+
+fig_coded_response
+```
+
+![Fig 2 from Haimovitz & Dweck (2016).](../original_paper/haimovitz2016_fig2.png)
 
 #### Manipulation Check Part 1: Was the parents' agreement with each of the intended mindsets above the midpoint?
 
@@ -394,8 +670,6 @@ data_manip_1 <- data_long |>
   group_by(prolific_id, measure) |>
   summarise(composite = mean(value_w_rs))
 
-head(data_manip_1)
-
 ## compute mean 
 data_manip_1_fig <- data_manip_1 |>
   group_by(measure) |>
@@ -407,7 +681,7 @@ data_manip_1_fig <- data_manip_1 |>
 head(data_manip_1_fig)
 ```
 
-##### Was the intended mind-set above the midpoint in the failure-is-debilitating condition?
+##### Was the intended mindset above the midpoint for the failure-is-debilitating condition?
 
 ```{r}
 # make a dataframe for the FID manipulation survey
@@ -415,10 +689,11 @@ data_manip_1_fid <- data_manip_1 |>
   filter(measure == "biased_fid")
 
 # Was the parents' agreement with each of the intended mindsets above the midpoint?
-t.test(data_manip_1_fid$composite, mu = 3.5, alternative = "two.sided")
+data_manip_1_fid_ttest <- t.test(data_manip_1_fid$composite, mu = 3.5, alternative = "two.sided")
+data_manip_1_fid_ttest
 ```
 
-##### Was the intended mind-set above the midpoint in the failure-is-enhancing condition?
+##### Was the intended mindset above the midpoint for the failure-is-enhancing condition?
 
 ```{r}
 # make a dataframe for the FIE manipulation survey
@@ -426,31 +701,45 @@ data_manip_1_fie <- data_manip_1 |>
   filter(measure == "biased_fie")
 
 # Was the parents' agreement with each of the intended mindsets above the midpoint?
-t.test(data_manip_1_fie$composite, mu = 3.5, alternative = "two.sided")
+data_manip_1_fie_ttest <- t.test(data_manip_1_fie$composite, mu = 3.5, alternative = "two.sided")
+data_manip_1_fie_ttest
 ```
 
 ##### Figure
 
 ```{r}
 # generate figure for failure-is-debilitating and failure-is-enhancing survey
-fig_manip_1 <- ggplot(data_manip_1_fig, aes(x=measure, y=mean)) +
-  geom_bar(position="dodge", stat="identity", width=0.75) + 
+fig_manip_1 <- ggplot(data_manip_1_fig, aes(x=measure, y=mean, color=measure)) + 
+  geom_point(size=3) + 
   geom_errorbar(aes(ymin=mean-sem,
                     ymax=mean+sem),
-                width=0.1,
-                position=position_dodge(0.9)) +
+                width=0.1, size=1.2) +
   geom_jitter(data=data_manip_1, 
               aes(x=measure, y=composite),
-              width = 0.1, height = 0) +
+              width = 0.1, height = 0, alpha=0.6) +
   scale_x_discrete("Condition",
                    labels=c("biased_fid" = "Failure-is-Debilitating",
                             "biased_fie" = "Failure-is-Enhancing")) +
+  scale_color_brewer(palette = "Dark2") +
   expand_limits(y=c(0,7)) +
-  scale_y_continuous(breaks=seq(0,7,1)) +
-  ylab("Composite Score of Biased Survey") +
+  coord_cartesian(ylim = c(1, 7)) +
+  scale_y_continuous(breaks = c(1:6),
+                       # label them with names
+                       labels = c("Strongly Disagree (1)", "Mostly Disagree (2)", "Slightly Disagree (3)",
+                                "Slightly Agree (4)", "Mostly Agree (5)", "Strongly Agree (6)")) +
+  ylab("Composite Response of Biased Survey") +
   geom_hline(yintercept=3.5, linetype="dashed") + 
   annotate(geom="text", x=2.48, y=3.7, label="Midpoint") +
-  theme_classic()
+  geom_signif(
+    y_position = c(6.5, 6.5), 
+    xmin = c(0.8, 1.8), xmax = c(1.2, 2.2),
+    annotation = c(paste("p=", round(data_manip_1_fid_ttest$p.value, digits = 5)),
+                   paste("p=", round(data_manip_1_fie_ttest$p.value, digits = 23))), 
+    tip_length = 0.0,
+    textsize = 3.5, 
+    color = "black") +
+  theme_classic() +
+  theme(legend.position = "none")
 
 fig_manip_1
 ```
@@ -468,8 +757,6 @@ data_manip_2 <- data_long |>
   filter(!is.na(value_w_rs)) |>
   group_by(prolific_id, condition) |>
   summarise(composite_f = mean(value_w_rs))
-
-head(data_manip_2)
 ```
 
 ##### T-Test
@@ -500,142 +787,243 @@ data_manip_2_fig <- data_manip_2 |>
   )
 
 head(data_manip_2_fig)
+```
 
-# generate figure 
-fig_manip_2 <- ggplot(data_manip_2_fig, aes(x=condition, y=mean_f)) +
-  geom_bar(position="dodge", stat="identity") + 
+```{r}
+# generate figure  
+fig_manip_2 <- ggplot(data_manip_2_fig, aes(x=condition, y=mean_f, color=condition)) +
+  geom_point(size=3) + 
   geom_errorbar(aes(ymin=mean_f-sem_f,
                     ymax=mean_f+sem_f),
-                width=0.1,
-                position=position_dodge(0.9)) +
+                width=0.1, size=1.2) +
   geom_jitter(data=data_manip_2, 
-              aes(x=condition, y=composite_f), 
-              width = 0.1, height = 0) +
+              aes(x=condition, y=composite_f),
+              width = 0.1, height = 0, alpha=0.6) +
+  scale_color_brewer(palette = "Dark2") +
   scale_x_discrete("Condition",
-                   labels=c("debilitating" = "Failure-is-Debilitating Condition", 
-                            "enhancing" = "Failure-is-Enhancing Condition")) +
-  ylab("Failure Mindset (Failure-Is-Debilitating)") +
+                   labels=c("debilitating" = "Failure-is-Debilitating",
+                            "enhancing" = "Failure-is-Enhancing")) +
+  ylab('"Failure is Debilitating" Composite Score') +
   expand_limits(y=c(0,7)) +
-  scale_y_continuous(breaks=seq(0,7,1)) +
+  coord_cartesian(ylim = c(1, 7)) +
+  scale_y_continuous(breaks = c(1:6),
+                     # label them with names
+                     labels = c("Strongly Disagree (1)", "Mostly Disagree (2)", "Slightly Disagree (3)",
+                                "Slightly Agree (4)", "Mostly Agree (5)", "Strongly Agree (6)")) +
   geom_signif(
-    y_position = c(6), 
+    y_position = c(6.5), 
     xmin = c(1.1), xmax = c(1.9),
-    annotation = c(paste("p=", round(data_manip_2_ttest$p.value, digits = 3))), tip_length = 0.0,
-    textsize = 3.5
-  ) +
-  theme_classic()
+    annotation = c(paste("p=", format(round(data_manip_2_ttest$p.value, digits = 5), scientific = FALSE))), 
+    tip_length = 0.0,
+    textsize = 3.5,
+    color = "black") +
+  labs(caption = '\nNote: The "Failure is Debilitating" values on the y-axes were computed by taking the six responses to \nthe positively- and negatively- worded failure mindset survey questions and creating composite \nscores for each participant. The positively-worded questions that indicated failure is enhancing (e.g., \n"Experiencing failure facilitates my learning and growth.") were reverse-scored. Higher values on the \ny-axes therefore indicate stronger agreement to the idea that failure is debilitating.') +
+  theme_classic() +
+  theme(legend.position = "none",
+        plot.caption = element_text(hjust = 0)) 
 
 fig_manip_2
 ```
 
-#### Secondary Analysis of Interest: Learning-Oriented Responses
+##### Manipulation Check Follow-Up Analyses
 
-Were parents who hold a failure-is-debilitating mind-set less likely to react with support for their child’s learning and mastery?
+The analyses above reveals a high level of variability in failure mindset even within the conditions. I was therefore curious to ask the following question: 
 
-##### Original Study Result 
-
-> "Parents who were induced to hold a failure-is-debilitating mind-set were ... less likely to react with support for their child’s learning and mastery, t(131) = −2.04, p = .043, ηp2 = .031, compared with those who were induced to hold a failure-is-enhancing mind-set (see Fig. 2)."
-
-##### Unpaired, Two-Tailed T-Test
+**Across conditions, is it possible that parents who more strongly believe failure is debilitating react to failure scenarios in 1) less learning-oriented ways and 2) more performance-oriented ways, compared to parents who disagree that failure is debilitating?**
 
 ```{r}
-# Are the number of learning-oriented responses different for the two groups?
-t_test_lor <- t.test(data_coded_response_fie$coded_lor, data_coded_response_fid$coded_lor, alternative = "two.sided", var.equal = FALSE)
-t_test_lor
+#Combine failure mindset composite scores with learning-oriented and performance-oriented responses
+coded_lor_por <- metadata |>
+  select(c("prolific_id", "coded_por", "coded_lor", "debrief_q2"))
+data_manip_change_followup <- merge(coded_lor_por, data_manip_2, by="prolific_id")
+
+#Linear regressions
+summary(lm(data_manip_change_followup$coded_lor ~ data_manip_change_followup$composite_f))
+summary(lm(data_manip_change_followup$coded_por ~ data_manip_change_followup$composite_f))
 ```
-
-##### Replication Study Figure
-
 ```{r}
-# compute relevant information to generate figure   
-data_coded_response_lor_fig <- metadata |>
-  group_by(condition) |>
-  summarise(
-    count = n(),
-    mean_lor = mean(coded_lor, na.rm = TRUE),
-    sd_lor = sd(coded_lor, na.rm = TRUE), 
-    sem_lor = sd_lor / sqrt(count)
-  )
-
-# generate figure
-fig_condition_lor <- ggplot(data_coded_response_lor_fig, aes(x=condition, y=mean_lor)) +
-  geom_bar(position="dodge", stat="identity") + 
-  geom_errorbar(aes(ymin=mean_lor-sem_lor,
-                    ymax=mean_lor+sem_lor),
-                width=0.1,
-                position=position_dodge(0.9)) +
-  geom_jitter(data=metadata, aes(x=condition, y=coded_lor), width = 0.1, height = 0) +
-  ylab("Number of Learning-Oriented Responses") +
-  scale_x_discrete("Condition",
-                   labels=c("debilitating" = "Failure-is-Debilitating Condition", 
-                            "enhancing" = "Failure-is-Enhancing Condition")) +
-  geom_signif(
-    y_position = c(3.5), 
-    xmin = c(1.1), xmax = c(1.9),
-    annotation = c(paste("p=", round(t_test_lor$p.value, digits = 3))), tip_length = 0.0,
-    textsize = 3.5) + 
-  theme_classic()
-
-fig_condition_lor
-```
-
-##### Side-By-Side Comparison with Fig 2 in Haimovitz & Dweck (2016)
-
-```{r}
-# Create figure of two pairs of bar graphs that parallels Fig 2 in the original paper
-
-## compute relevant information to generate figure
-data_coded_response_combined_fig <- metadata |>
+#generate figure
+data_manip_change_followup_fig_1 <- data_manip_change_followup |>
   pivot_longer(coded_por:coded_lor,
-               names_to = "response_type",
-               values_to = "num_response") |>
-  group_by(condition, response_type) |>
-  summarise(count = n(),
-            mean = mean(num_response, na.rm = TRUE),
-            sd = sd(num_response, na.rm = TRUE), 
-            sem = sd / sqrt(count),)
-head(data_coded_response_combined_fig)
+               names_to="code_type",
+               values_to="score")
 
-## generate figure
-fig_coded_response <- ggplot(data_coded_response_combined_fig, aes(x=response_type, y=mean, group=condition, fill=condition)) +
-  geom_bar(position="dodge", stat="identity") + 
-  geom_errorbar(aes(ymin=mean-sem,
-                    ymax=mean+sem),
-                width=0.1,
-                position=position_dodge(0.9)) +
-  scale_x_discrete("Parental Responses to Child-Failure Scenario",
-                   limits=c("coded_por", "coded_lor"), #not working due to back-end bug
-                   labels=c("coded_lor" = "Learning-Oriented", 
-                            "coded_por" = "Performance-Oriented")) +
+fig_1_manip_change_followup <- ggplot(data=data_manip_change_followup_fig_1, aes(x=composite_f, y=score)) +
+  facet_wrap(~code_type,
+             labeller = labeller(code_type = c("coded_lor" = "Learning-Oriented Responses",
+                                               "coded_por" = "Performance-Oriented Responses"))) +
+  geom_point() +
+  geom_smooth() +
+  xlab('"Failure is Debilitating" Composite Score') +
   ylab("Number of Responses") +
-  annotate("text", x = 1:2, y = 3.5:3.5, 
-           label = c(paste("p=", round(t_test_por$p.value, digits = 3)), 
-                     paste("p=", round(t_test_lor$p.value, digits = 3)))) +
-  geom_segment(aes(x = 0.8, y = 3.3, xend = 1.2, yend = 3.3)) +
-  geom_segment(aes(x = 1.8, y = 3.3, xend = 2.2, yend = 3.3)) +
-  theme_bw() +
-  theme(legend.position="top", 
-        legend.title = element_blank(),
-        panel.grid.major=element_blank(), 
-        panel.grid.minor=element_blank(),
-        panel.border=element_blank(),  
-        axis.line=element_line()) +
+  scale_x_continuous(breaks = c(1:6),
+                     # label them with names
+                     labels = c("Strongly Disagree (1)", "Mostly Disagree (2)", "Slightly Disagree (3)",
+                                "Slightly Agree (4)", "Mostly Agree (5)", "Strongly Agree (6)"),
+                     guide=guide_axis(angle=65)) +
+  scale_y_continuous(breaks=seq(0,6,0.5)) +
+  coord_cartesian(ylim = c(0, 6)) +
+  theme_bw()
+fig_1_manip_change_followup
+```
+
+#### Funnel Debrief Analysis
+
+##### Debrief Question: Are you familiar with the term failure mindset, or growth/fixed mindset?
+```{r}
+kable(table(metadata$debrief_q2), col.names = c("Answer", "N"))
+
+fig_debrief2 <- ggplot(metadata, aes(x=debrief_q2)) +
+  geom_bar() +
+  xlab("Are you familiar with the term failure mindset, or growth/fixed mindset?") +
+  ylab("N") +
+  scale_y_continuous(breaks=seq(0,50,5)) +
+  theme_classic() 
+fig_debrief2
+
+fig_debrief2_condition <- ggplot(metadata, aes(x=debrief_q2, fill=condition)) +
+  geom_bar(position="dodge") +
+  xlab("Are you familiar with the term failure mindset, or growth/fixed mindset?") +
+  ylab("N") +
+  scale_y_continuous(breaks=seq(0,25,5)) +
+  theme_classic() +
+  theme(legend.position="top",
+        legend.title = element_blank()) +
   scale_fill_brewer(labels=c("Failure-Is-Debilitating Condition",
                                "Failure-Is-Enhancing Condition"), 
                     palette = "Dark2")
 
-fig_coded_response
+fig_debrief2_condition
 ```
 
-![Fig 2 from Haimovitz & Dweck (2016).](../original_paper/haimovitz2016_fig2.png)
+##### Debrief Question: Do you think your own mindset impacts your child(ren)'s mindset?
 
+```{r}
+data_debrief3 <- metadata |>
+  filter(debrief_q2 == "Yes")
+kable(table(data_debrief3$debrief_q3), col.names = c("Answer", "N"))
 
-<!-- ## Discussion -->
+fig_debrief3 <- ggplot(data_debrief3, aes(x=debrief_q3)) +
+  geom_bar() +
+  xlab("Do you think your own mindset impacts your child(ren)'s mindset?") +
+  ylab("N") +
+  scale_y_continuous(breaks=seq(0,45,5)) +
+  theme_classic() 
+fig_debrief3
+```
 
-<!-- ### Summary of Replication Attempt -->
+##### Did parents' knowledge of mindset research have any effect on their performance-oriented and learning-oriented responses? 
 
-<!-- Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.   -->
+```{r fig.width=10, fig.height = 6} 
+data_funneldebrief <- metadata |>
+  pivot_longer(coded_por:coded_lor,
+               names_to = "code_type", 
+               values_to = "response")
 
-<!-- ### Commentary -->
+data_funneldebrief_stats <- data_funneldebrief |>
+  group_by(debrief_q2, code_type) |>
+  summarise(count = n(),
+            mean = mean(response, na.rm = TRUE),
+            sd = sd(response, na.rm = TRUE), 
+            sem = sd / sqrt(count),)
 
-<!-- Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long. -->
+data_funneldebrief_cond_stats <- data_funneldebrief |>
+  group_by(debrief_q2, condition, code_type) |>
+  summarise(count = n(),
+            mean = mean(response, na.rm = TRUE),
+            sd = sd(response, na.rm = TRUE), 
+            sem = sd / sqrt(count),)
+
+fig_funneldebrief <- ggplot(data=data_funneldebrief_stats, aes(x=debrief_q2, y=mean)) +
+  facet_wrap(~code_type,
+             labeller = labeller(code_type = c("coded_lor" = "Learning-Oriented Responses",
+                                               "coded_por" = "Performance-Oriented Responses"))) +
+  geom_point(colour="black", size=3) +
+  geom_errorbar(aes(ymin=mean-sem, ymax=mean+sem), width=.2, colour="black", size=1) +
+  geom_jitter(data = data_funneldebrief, aes(x = debrief_q2, y = response, color=condition), alpha=0.4,
+              position = position_jitterdodge()) +
+  geom_point(data=data_funneldebrief_cond_stats, aes(x=debrief_q2, y=mean, color=condition), size=3, 
+             position=position_dodge(width=1)) +
+  geom_errorbar(data=data_funneldebrief_cond_stats, aes(ymin=mean-sem, ymax=mean+sem, color=condition), 
+                width=.2, size=1, 
+                position=position_dodge(width=1)) +
+  scale_color_brewer(labels=c("Failure-Is-Debilitating Condition",
+                              "Failure-Is-Enhancing Condition"), 
+                     palette = "Dark2") +
+  xlab("Are you familiar with the term failure mindset, or growth/fixed mindset?") +
+  ylab("Number of Responses") +
+  scale_y_continuous(breaks=seq(0,6,1)) +
+  theme_bw() +
+  theme(legend.position="top",
+        legend.title = element_blank())
+fig_funneldebrief
+```
+
+##### Is it possible that parents' knowledge of mindset research affected their response to the failure mindset survey used in the manipulation check?
+
+```{r}
+debrief_q2 <- metadata |> 
+  select(c("prolific_id", "debrief_q2"))
+data_manip_2_w_debrief <- merge(debrief_q2, data_manip_2, by="prolific_id")
+
+fig_manip_2_w_debrief <- ggplot(data_manip_2_fig, aes(x=condition, y=mean_f)) +
+  geom_point(size=3) + 
+  geom_errorbar(aes(ymin=mean_f-sem_f,
+                    ymax=mean_f+sem_f),
+                width=0.1, size=1.2) +
+  geom_jitter(data=data_manip_2_w_debrief, 
+              aes(x=condition, y=composite_f, color=debrief_q2),
+              width = 0.1, height = 0, alpha=0.6) +
+  scale_x_discrete("Condition",
+                   labels=c("debilitating" = "Failure-is-Debilitating",
+                            "enhancing" = "Failure-is-Enhancing")) +
+  ylab('"Failure is Debilitating" Composite Score') +
+  expand_limits(y=c(0,7)) +
+  coord_cartesian(ylim = c(1, 7)) +
+  scale_y_continuous(breaks = c(1:6),
+                     # label them with names
+                     labels = c("Strongly Disagree (1)", "Mostly Disagree (2)", "Slightly Disagree (3)",
+                                "Slightly Agree (4)", "Mostly Agree (5)", "Strongly Agree (6)")) +
+  geom_signif(
+    y_position = c(6.5), 
+    xmin = c(1.1), xmax = c(1.9),
+    annotation = c(paste("p=", format(round(data_manip_2_ttest$p.value, digits = 5), scientific = FALSE))), 
+    tip_length = 0.0,
+    textsize = 3.5,
+    color = "black") +
+  labs(caption = '\nNote: The "Failure is Debilitating" values on the y-axes were computed by taking the six responses to \nthe positively- and negatively- worded failure mindset survey questions and creating composite \nscores for each participant. The positively-worded questions that indicated failure is enhancing (e.g., \n"Experiencing failure facilitates my learning and growth.") were reverse-scored. Higher values on the \ny-axes therefore indicate stronger agreement to the idea that failure is debilitating.') +
+  theme_classic() +
+  theme(legend.position = "top",
+        plot.caption = element_text(hjust = 0)) +
+  scale_color_discrete("Familiarity with Mindset Research")
+
+fig_manip_2_w_debrief
+```
+
+## Discussion
+
+### Summary of Replication Attempt
+
+The key analysis of interest was an unpaired, two-tailed t test comparing performance-oriented responses between the failure-is-debilitating condition and failure-is-enhancing condition. The original authors reported the following result: 
+
+> “Parents who were induced to hold a failure-is-debilitating mind-set were more likely to react with concerns about their child’s performance and lack of ability, t(131) = 3.246, p < .001, ηp2 = .075 … compared with those who were induced to hold a failure-is-enhancing mind-set.”
+
+The replication study showed similar trends to this original finding. The effect was not as large and there was no statistical difference in the number of performance-oriented responses between the two conditions, t(`r round(t_test_por$parameter)`) = `r round(t_test_por$statistic, digits=4)`, p = `r round(t_test_por$p.value, digits=4)`, ηp2 = .031. However, I think my replication was rather successful, given that my sample size was smaller. 
+
+### Commentary
+
+The exploratory analysis comparing the difference in the learning-oriented responses between the two conditions was promising. Although the difference was not significant, the finding showed similar trends to the original study. 
+
+The exploratory analyses also provided some insight as to why my results showed less of a difference between the two conditions, compared to the original study. 
+
+1) In line with the original study, each of the conditions' average response to the biased surveys differed from the midpoint and was above it, indicating agreement. However, plotting individual participants' responses to the biased survey revealed that there were a lot of parents in the failure-is-debilitating condition who were below the midpoint and actually disagreed with the biased survey questions. Furthermore, the average response within the failure-is-debilitating condition was slightly higher in the original study, indicating that there was slightly more agreement to the failure-is-debilitating statements in the original study.
+
+2) In line with the original study, parents in the failure-is-debilitating condition reported more of a failure-is-debilitating mindset at the end of the paradigm. However, there was a lot of individual variability especially within the failure-is-debilitating group. Furthermore, the average numerical value for failure mindset was 3.19, which corresponds to the answer choice: "slightly disagree." In other words, those in the failure-is-debilitating condition reported that on average, they "slightly disagree" to the idea that failure is debilitating. 
+
+3) Further analyses on the funnel debrief question also hint at the possibility that past knowledge of mindset research may have affected the results. 
+
+Overall, these exploratory analyses provide some reason to believe that many parents seem to inherently believe that failure is enhancing, and that it can be hard to induce a different belief. This phenomenon may especially be prevalent more recently, given that the mindset literature has become overly popularized. 
+
+More generally, I learned that there is a level of subjectivity in coding open-ended responses, making these types of studies hard to replicate. The authors provided a detailed coding scheme, which was crucial in helping me code the responses. In addition to documenting detailed procedures around coding, sharing the raw response data and the scores could be helpful as well. This information would be especially useful in providing more detailed examples of how the raw responses were coded.
+
+Taken together, the replication study was rather successful. Coding open-ended responses can be subjective and prone to error. Furthermore, the exploratory analyses showed that failure mindsets were hard to induce in the first place. Despite these factors that went against successfully replicating my study, I was able to find promising, marginal differences between the two conditions. 
